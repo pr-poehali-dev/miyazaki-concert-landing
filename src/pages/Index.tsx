@@ -192,10 +192,6 @@ function VideoCarousel() {
                       <div className="play-btn">
                         <Icon name="Play" size={22} style={{ color: "var(--night-deep)", marginLeft: "3px" }} />
                       </div>
-                      <div className="video-info">
-                        <p className="text-sm font-medium" style={{ color: "var(--star-silver)", fontFamily: "'Cormorant Garamond', serif", fontSize: "1.1rem" }}>{video.title}</p>
-                        <p className="text-xs" style={{ color: "rgba(200,216,240,0.55)" }}>{video.caption}</p>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -239,23 +235,13 @@ function VideoCarousel() {
               ) : (
                 <div className="video-modal-placeholder">
                   <Icon name="Video" size={40} style={{ color: "var(--star-gold)", marginBottom: "12px" }} />
-                  <p style={{ color: "var(--star-silver)", fontFamily: "'Cormorant Garamond', serif", fontSize: "1.4rem" }}>
-                    {videos[activeIdx].title}
-                  </p>
                   <p style={{ color: "rgba(200,216,240,0.45)", fontSize: "0.85rem", marginTop: "6px" }}>
                     Видео будет доступно ближе к дате концерта
                   </p>
                 </div>
               )}
             </div>
-            <div className="text-center mt-4">
-              <p style={{ color: "var(--star-silver)", fontFamily: "'Cormorant Garamond', serif", fontSize: "1.3rem" }}>
-                {videos[activeIdx].title}
-              </p>
-              <p style={{ color: "rgba(200,216,240,0.45)", fontSize: "0.8rem", marginTop: "4px" }}>
-                {videos[activeIdx].caption}
-              </p>
-            </div>
+
           </div>
         </div>
       )}
