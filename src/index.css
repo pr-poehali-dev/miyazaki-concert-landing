@@ -357,6 +357,213 @@
   color: var(--star-gold);
 }
 
+/* ── Video Carousel ── */
+.video-slot {
+  cursor: pointer;
+}
+
+.video-poster {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(13, 21, 53, 0.7);
+  border: 1px solid rgba(232, 201, 122, 0.15);
+  transition:
+    border-color 0.3s ease,
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease;
+}
+
+.video-slot:hover .video-poster {
+  border-color: rgba(232, 201, 122, 0.45);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow:
+    0 24px 60px rgba(232, 201, 122, 0.12),
+    0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.video-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    145deg,
+    rgba(13, 21, 53, 0.9) 0%,
+    rgba(26, 37, 80, 0.7) 100%
+  );
+}
+
+.video-placeholder-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(7, 11, 26, 0.85) 0%,
+    rgba(7, 11, 26, 0.15) 50%,
+    transparent 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.video-slot:hover .video-overlay {
+  opacity: 1;
+}
+
+.play-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--star-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  box-shadow: 0 0 30px rgba(232, 201, 122, 0.5);
+  transition: transform 0.2s ease;
+}
+
+.video-slot:hover .play-btn {
+  transform: scale(1.1);
+}
+
+.video-info {
+  text-align: center;
+  padding: 0 12px;
+}
+
+.video-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(13, 21, 53, 0.85);
+  border: 1px solid rgba(232, 201, 122, 0.3);
+  color: var(--star-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.video-arrow:hover:not(:disabled) {
+  background: rgba(232, 201, 122, 0.15);
+  border-color: var(--star-gold);
+}
+
+.video-arrow:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.video-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.video-dot:hover {
+  transform: scale(1.4);
+}
+
+/* Modal */
+.video-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(7, 11, 26, 0.92);
+  backdrop-filter: blur(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fade-in-slow 0.25s ease forwards;
+}
+
+.video-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  animation: video-modal-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes video-modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.video-modal-close {
+  position: absolute;
+  top: -44px;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(232, 201, 122, 0.1);
+  border: 1px solid rgba(232, 201, 122, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.video-modal-close:hover {
+  background: rgba(232, 201, 122, 0.2);
+  border-color: var(--star-gold);
+}
+
+.video-modal-player {
+  aspect-ratio: 9 / 16;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(232, 201, 122, 0.25);
+  box-shadow:
+    0 40px 100px rgba(0, 0, 0, 0.6),
+    0 0 60px rgba(232, 201, 122, 0.1);
+}
+
+.video-modal-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    145deg,
+    rgba(13, 21, 53, 0.95) 0%,
+    rgba(26, 37, 80, 0.9) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 ::-webkit-scrollbar {
   width: 4px;
 }
