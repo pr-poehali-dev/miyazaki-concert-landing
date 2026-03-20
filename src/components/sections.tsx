@@ -231,7 +231,7 @@ export function TicketsSection() {
           <h2 className="text-5xl md:text-6xl font-light" style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--star-silver)" }}>
             Выберите свой
             <br />
-            <em className="italic" style={{ color: "var(--star-gold)" }}>вечер среди звёзд</em>
+            <em className="italic" style={{ color: "var(--star-gold)" }}>музыки и звезд</em>
           </h2>
         </div>
 
