@@ -113,11 +113,11 @@ function VideoCarousel() {
     <section id="videos" className="relative z-10 py-32 px-6">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-14">
-          <p className="text-xs tracking-[0.3em] uppercase mb-4" style={{ color: "var(--spirit-teal)" }}>За кулисами</p>
+          <p className="text-xs tracking-[0.3em] uppercase mb-4" style={{ color: "var(--spirit-teal)" }}>Видео</p>
           <h2 className="text-5xl md:text-6xl font-light" style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--star-silver)" }}>
-            Атмосфера
+            Фрагменты
             <br />
-            <em className="italic" style={{ color: "var(--star-gold)" }}>вечера</em>
+            <em className="italic" style={{ color: "var(--star-gold)" }}>предыдущих концертов</em>
           </h2>
         </div>
 
