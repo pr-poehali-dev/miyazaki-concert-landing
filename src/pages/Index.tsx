@@ -575,42 +575,23 @@ export default function Index() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {tickets.map(({ tier, price, description, perks, featured }) => (
-              <div key={tier} className={`ticket-card rounded-2xl p-7 ${featured ? "featured" : ""}`}>
-                {featured && (
-                  <div
-                    className="text-xs tracking-[0.2em] uppercase text-center mb-5 py-1 px-3 rounded-full mx-auto w-fit"
-                    style={{ background: "rgba(232, 201, 122, 0.15)", color: "var(--star-gold)", border: "1px solid rgba(232, 201, 122, 0.3)" }}
-                  >
-                    Популярный выбор
-                  </div>
-                )}
-                <h3 className="text-2xl font-light mb-2" style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--star-silver)" }}>
-                  {tier}
-                </h3>
-                <p className="text-sm mb-5" style={{ color: "rgba(200, 216, 240, 0.5)" }}>{description}</p>
-                <p className="text-4xl font-light mb-6" style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--star-gold)" }}>
-                  {price}
-                </p>
-                <div className="space-y-2.5 mb-8">
-                  {perks.map((perk) => (
-                    <div key={perk} className="flex items-center gap-2.5">
-                      <span style={{ color: "var(--star-gold)" }}>✦</span>
-                      <span className="text-sm" style={{ color: "rgba(200, 216, 240, 0.65)" }}>{perk}</span>
-                    </div>
-                  ))}
-                </div>
-                <button
-                  className={`w-full py-3 rounded text-sm cursor-pointer ${featured ? "btn-gold" : "btn-ghost-gold"}`}
-                >
-                  Купить билет
-                </button>
-              </div>
-            ))}
+          {/* ── Виджет билетного оператора ── */}
+          {/* Вставьте сюда код виджета (например, от Ticketscloud, Radario, Timepad и др.) */}
+          <div className="ticket-widget-slot rounded-2xl mb-12 flex flex-col items-center justify-center gap-4" style={{ minHeight: 220 }}>
+            <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ background: "rgba(232,201,122,0.1)", border: "1px solid rgba(232,201,122,0.25)" }}>
+              <Icon name="Ticket" size={24} style={{ color: "var(--star-gold)" }} />
+            </div>
+            <div className="text-center">
+              <p className="text-base font-light mb-1" style={{ color: "var(--star-silver)", fontFamily: "'Cormorant Garamond', serif", fontSize: "1.25rem" }}>
+                Здесь появится виджет продажи билетов
+              </p>
+              <p className="text-xs" style={{ color: "rgba(200,216,240,0.35)" }}>
+                Вставьте код виджета билетного оператора вместо этого блока
+              </p>
+            </div>
           </div>
 
-          <p className="text-center text-xs mt-10" style={{ color: "rgba(200, 216, 240, 0.3)" }}>
+          <p className="text-center text-xs mt-4" style={{ color: "rgba(200, 216, 240, 0.3)" }}>
             Возврат билетов до 7 июня 2025 • 18+
           </p>
         </div>

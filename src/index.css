@@ -357,6 +357,21 @@
   color: var(--star-gold);
 }
 
+/* ── Ticket widget slot ── */
+.ticket-widget-slot {
+  background: linear-gradient(
+    135deg,
+    rgba(13, 21, 53, 0.6) 0%,
+    rgba(26, 37, 80, 0.4) 100%
+  );
+  border: 1.5px dashed rgba(232, 201, 122, 0.25);
+  transition: border-color 0.3s ease;
+}
+
+.ticket-widget-slot:hover {
+  border-color: rgba(232, 201, 122, 0.45);
+}
+
 /* ── Video Carousel ── */
 .video-slot {
   cursor: pointer;
