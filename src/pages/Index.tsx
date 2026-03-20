@@ -36,12 +36,54 @@ function StarsBackground() {
 }
 
 const program = [
-  { film: "Унесённые призраками", pieces: ["Путь реки / Всегда со мной", "Легенда Дзэнибы"] },
-  { film: "Мой сосед Тоторо", pieces: ["Прогулка", "Тоторо"] },
-  { film: "Принцесса Мононоке", pieces: ["Тема Ашитаки", "Лес богов"] },
-  { film: "Ходячий замок", pieces: ["Тема Хаула", "Марш Пустоши"] },
-  { film: "Навсикая из Долины ветров", pieces: ["Поле орм", "Реквием"] },
-  { film: "Замок Калиостро", pieces: ["Тема погони", "Рассвет над замком"] },
+  {
+    film: "Унесённые призраками",
+    pieces: ["Путь реки / Всегда со мной", "Легенда Дзэнибы"],
+    character: "Тихиро и Безликий",
+    year: "2001",
+    color: "#7b5ea7",
+    img: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/files/f3c7be50-a50b-42d6-a58f-56b7ccf5a041.jpg",
+  },
+  {
+    film: "Мой сосед Тоторо",
+    pieces: ["Прогулка", "Тоторо"],
+    character: "Тоторо",
+    year: "1988",
+    color: "#4a9e6a",
+    img: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/files/1f585d01-facc-45e2-bf61-3256e9923d89.jpg",
+  },
+  {
+    film: "Принцесса Мононоке",
+    pieces: ["Тема Ашитаки", "Лес богов"],
+    character: "Сан и Ситиками",
+    year: "1997",
+    color: "#4a9e9e",
+    img: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/files/b935b8b0-02c6-4b53-bf75-79dc9029e0f0.jpg",
+  },
+  {
+    film: "Ходячий замок",
+    pieces: ["Тема Хаула", "Марш Пустоши"],
+    character: "Хаул",
+    year: "2004",
+    color: "#c8a84b",
+    img: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/files/06bd79fa-7b6e-438e-b2b9-c8013f53692d.jpg",
+  },
+  {
+    film: "Навсикая из Долины ветров",
+    pieces: ["Поле орм", "Реквием"],
+    character: "Навсикая",
+    year: "1984",
+    color: "#9e7a4a",
+    img: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/files/65acfad1-58dd-4384-97b2-1d4ee4b3d21e.jpg",
+  },
+  {
+    film: "Замок Калиостро",
+    pieces: ["Тема погони", "Рассвет над замком"],
+    character: "Люпен III",
+    year: "1979",
+    color: "#5a7ab5",
+    img: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/files/83959779-8993-4554-9649-c20fb738674f.jpg",
+  },
 ];
 
 // Placeholder videos — replace src with real video URLs later
@@ -449,7 +491,7 @@ export default function Index() {
 
       {/* PROGRAM */}
       <section id="program" className="relative z-10 py-32 px-6" style={{ background: "rgba(13, 21, 53, 0.3)" }}>
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-xs tracking-[0.3em] uppercase mb-4" style={{ color: "var(--spirit-teal)" }}>Программа вечера</p>
             <h2 className="text-5xl md:text-6xl font-light" style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--star-silver)" }}>
@@ -459,23 +501,26 @@ export default function Index() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {program.map(({ film, pieces }, i) => (
-              <div key={film} className="glass-card program-item rounded-xl px-6 py-5">
-                <div className="flex items-start gap-3">
-                  <span
-                    className="text-xs font-medium mt-0.5 min-w-[20px]"
-                    style={{ color: "rgba(232, 201, 122, 0.45)", fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem" }}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-light mb-2" style={{ color: "var(--star-silver)", fontFamily: "'Cormorant Garamond', serif" }}>
-                      {film}
-                    </h3>
+          <div className="grid md:grid-cols-3 gap-5">
+            {program.map(({ film, pieces, character, year, color, img }, i) => (
+              <div key={film} className="program-card group" style={{ "--card-color": color } as React.CSSProperties}>
+                {/* Image */}
+                <div className="program-card-img">
+                  <img src={img} alt={character} className="w-full h-full object-cover" />
+                  <div className="program-card-img-overlay" style={{ background: `linear-gradient(to top, rgba(7,11,26,0.97) 0%, rgba(7,11,26,0.5) 45%, transparent 100%)` }} />
+                  <div className="program-card-year">{year}</div>
+                </div>
+
+                {/* Content */}
+                <div className="program-card-body">
+                  <div className="program-card-number">{String(i + 1).padStart(2, "0")}</div>
+                  <h3 className="program-card-title">{film}</h3>
+                  <p className="program-card-character" style={{ color }}>— {character}</p>
+                  <div className="program-card-divider" style={{ background: `linear-gradient(90deg, ${color}60, transparent)` }} />
+                  <div className="program-card-pieces">
                     {pieces.map((piece) => (
-                      <p key={piece} className="text-sm mb-1" style={{ color: "rgba(200, 216, 240, 0.5)" }}>
-                        — {piece}
+                      <p key={piece} className="program-card-piece">
+                        <span style={{ color }}>♩</span> {piece}
                       </p>
                     ))}
                   </div>
@@ -484,7 +529,7 @@ export default function Index() {
             ))}
           </div>
 
-          <p className="text-center text-sm mt-8" style={{ color: "rgba(200, 216, 240, 0.3)" }}>
+          <p className="text-center text-sm mt-10" style={{ color: "rgba(200, 216, 240, 0.3)" }}>
             Программа может быть незначительно изменена
           </p>
         </div>
