@@ -441,10 +441,7 @@ export default function Index() {
                   style={{ background: "linear-gradient(to top, rgba(7,11,26,0.6) 0%, transparent 50%)" }}
                 />
               </div>
-              <div className="absolute -bottom-4 -right-4 glass-card px-5 py-3 rounded-xl">
-                <p className="text-xs" style={{ color: "rgba(200, 216, 240, 0.6)" }}>Мест осталось</p>
-                <p className="text-2xl font-light" style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--star-gold)" }}>47</p>
-              </div>
+
             </div>
           </div>
         </div>
