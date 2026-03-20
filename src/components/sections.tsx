@@ -229,9 +229,9 @@ export function TicketsSection() {
         <div className="text-center mb-16">
           <p className="text-xs tracking-[0.3em] uppercase mb-4" style={{ color: "var(--spirit-teal)" }}>Билеты</p>
           <h2 className="text-5xl md:text-6xl font-light" style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--star-silver)" }}>
-            Выберите свой
+            Проведите свой вечер
             <br />
-            <em className="italic" style={{ color: "var(--star-gold)" }}>музыки и звезд</em>
+            <em className="italic" style={{ color: "var(--star-gold)" }}>среди музыки и звёзд</em>
           </h2>
         </div>
 
