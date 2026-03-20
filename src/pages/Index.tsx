@@ -30,9 +30,7 @@ export default function Index() {
       <nav className="relative z-50 flex items-center justify-between px-8 py-6 max-w-6xl mx-auto">
         <div className="flex items-center gap-2">
           <span className="text-xl" style={{ color: "var(--star-gold)" }}>✦</span>
-          <span className="font-light text-sm tracking-widest uppercase" style={{ color: "var(--star-silver)", fontFamily: "'Golos Text', sans-serif" }}>
-            Миядзаки в Планетарии
-          </span>
+          <span className="font-light text-sm tracking-widest uppercase" style={{ color: "var(--star-silver)", fontFamily: "'Golos Text', sans-serif" }}>МИЯДЗАКИ В ПЛАНЕТАРИИ 1</span>
         </div>
         <div className="hidden md:flex items-center gap-8">
           <a href="#about" className="nav-link">О концерте</a>
