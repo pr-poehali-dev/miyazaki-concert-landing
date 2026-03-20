@@ -501,21 +501,17 @@ export default function Index() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-5">
-            {program.map(({ film, pieces, character, year, color, img }, i) => (
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
+            {program.map(({ film, pieces, color, img, year }, i) => (
               <div key={film} className="program-card group" style={{ "--card-color": color } as React.CSSProperties}>
-                {/* Image */}
                 <div className="program-card-img">
-                  <img src={img} alt={character} className="w-full h-full object-cover" />
-                  <div className="program-card-img-overlay" style={{ background: `linear-gradient(to top, rgba(7,11,26,0.97) 0%, rgba(7,11,26,0.5) 45%, transparent 100%)` }} />
+                  <img src={img} alt={film} className="w-full h-full object-cover" />
+                  <div className="program-card-img-overlay" style={{ background: `linear-gradient(to top, rgba(7,11,26,0.97) 0%, rgba(7,11,26,0.3) 50%, transparent 100%)` }} />
                   <div className="program-card-year">{year}</div>
                 </div>
-
-                {/* Content */}
                 <div className="program-card-body">
                   <div className="program-card-number">{String(i + 1).padStart(2, "0")}</div>
                   <h3 className="program-card-title">{film}</h3>
-                  <p className="program-card-character" style={{ color }}>— {character}</p>
                   <div className="program-card-divider" style={{ background: `linear-gradient(90deg, ${color}60, transparent)` }} />
                   <div className="program-card-pieces">
                     {pieces.map((piece) => (
