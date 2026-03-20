@@ -3,34 +3,90 @@ import Icon from "@/components/ui/icon";
 
 const heroImage = "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/files/ce1bc687-6056-4997-9310-c32fe42d72ec.jpg";
 
-const STARS_COUNT = 160;
+const STARS_COUNT = 120;
+const SECTION_STARS = 60;
+
+// Стабильные данные звёзд, вычисляются один раз
+function makeStars(count: number, seed: number) {
+  return Array.from({ length: count }, (_, i) => {
+    const r = (((i * 9301 + seed * 49297) % 233280) / 233280);
+    const r2 = (((i * 6037 + seed * 31337) % 233280) / 233280);
+    const r3 = (((i * 3517 + seed * 12345) % 233280) / 233280);
+    const r4 = (((i * 7919 + seed * 54321) % 233280) / 233280);
+    const r5 = (((i * 2311 + seed * 98765) % 233280) / 233280);
+    return {
+      size: r * 2 + 0.5,
+      x: r2 * 100,
+      y: r3 * 100,
+      twinkleDuration: r4 * 5 + 3,
+      twinkleDelay: r5 * 8,
+      driftDuration: r * 40 + 25,
+      driftDelay: r2 * 15,
+      minOpacity: r3 * 0.3 + 0.1,
+      driftX: (r4 - 0.5) * 6,
+      driftY: (r5 - 0.5) * 4,
+    };
+  });
+}
+
+const bgStars = makeStars(STARS_COUNT, 42);
+const sectionStarSets: Record<string, ReturnType<typeof makeStars>> = {
+  about: makeStars(SECTION_STARS, 101),
+  program: makeStars(SECTION_STARS, 202),
+  performers: makeStars(SECTION_STARS, 303),
+  videos: makeStars(SECTION_STARS, 404),
+  tickets: makeStars(SECTION_STARS, 505),
+};
 
 function StarsBackground() {
   return (
     <div className="stars-bg">
-      {Array.from({ length: STARS_COUNT }).map((_, i) => {
-        const size = Math.random() * 2.5 + 0.5;
-        const x = Math.random() * 100;
-        const y = Math.random() * 100;
-        const duration = Math.random() * 4 + 2;
-        const delay = Math.random() * 5;
-        const minOpacity = Math.random() * 0.3 + 0.1;
-        return (
-          <div
-            key={i}
-            className="star"
-            style={{
-              width: size,
-              height: size,
-              left: `${x}%`,
-              top: `${y}%`,
-              "--duration": `${duration}s`,
-              "--delay": `${delay}s`,
-              "--min-opacity": minOpacity,
-            } as React.CSSProperties}
-          />
-        );
-      })}
+      {bgStars.map((s, i) => (
+        <div
+          key={i}
+          className="star star-drift"
+          style={{
+            width: s.size,
+            height: s.size,
+            left: `${s.x}%`,
+            top: `${s.y}%`,
+            "--twinkle-duration": `${s.twinkleDuration}s`,
+            "--twinkle-delay": `${s.twinkleDelay}s`,
+            "--drift-duration": `${s.driftDuration}s`,
+            "--drift-delay": `${s.driftDelay}s`,
+            "--min-opacity": s.minOpacity,
+            "--drift-x": `${s.driftX}px`,
+            "--drift-y": `${s.driftY}px`,
+          } as React.CSSProperties}
+        />
+      ))}
+    </div>
+  );
+}
+
+function SectionStars({ id }: { id: string }) {
+  const stars = sectionStarSets[id] ?? [];
+  return (
+    <div className="section-stars-layer" aria-hidden>
+      {stars.map((s, i) => (
+        <div
+          key={i}
+          className="star star-drift"
+          style={{
+            width: s.size,
+            height: s.size,
+            left: `${s.x}%`,
+            top: `${s.y}%`,
+            "--twinkle-duration": `${s.twinkleDuration}s`,
+            "--twinkle-delay": `${s.twinkleDelay}s`,
+            "--drift-duration": `${s.driftDuration}s`,
+            "--drift-delay": `${s.driftDelay}s`,
+            "--min-opacity": s.minOpacity,
+            "--drift-x": `${s.driftX}px`,
+            "--drift-y": `${s.driftY}px`,
+          } as React.CSSProperties}
+        />
+      ))}
     </div>
   );
 }
@@ -152,7 +208,9 @@ function VideoCarousel() {
   const slideOffset = currentSlide * (100 / VISIBLE);
 
   return (
-    <section id="videos" className="relative z-10 py-32 px-6">
+    <section id="videos" className="relative z-10 py-32 px-6 section-with-bg">
+      <SectionStars id="videos" />
+      <div className="section-nebula" style={{ background: "radial-gradient(ellipse 80% 50% at 50% 50%, rgba(74,100,158,0.1) 0%, transparent 100%)" }} />
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-14">
           <p className="text-xs tracking-[0.3em] uppercase mb-4" style={{ color: "var(--spirit-teal)" }}>Видео</p>
@@ -329,38 +387,11 @@ export default function Index() {
 
   return (
     <div className="relative min-h-screen" style={{ background: "var(--night-deep)" }}>
-      <StarsBackground />
+      {/* Global parallax hero image background */}
+      <div className="global-bg-image" style={{ backgroundImage: `url(${heroImage})` }} />
+      <div className="global-bg-overlay" />
 
-      {/* Atmospheric blobs */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div
-          className="absolute animate-drift"
-          style={{
-            width: 600,
-            height: 600,
-            top: "-15%",
-            left: "-10%",
-            background: "radial-gradient(ellipse, rgba(123, 94, 167, 0.12) 0%, transparent 70%)",
-            borderRadius: "60% 40% 70% 30% / 50% 60% 40% 50%",
-            filter: "blur(30px)",
-            animationDuration: "15s",
-          }}
-        />
-        <div
-          className="absolute animate-drift"
-          style={{
-            width: 500,
-            height: 500,
-            bottom: "10%",
-            right: "-8%",
-            background: "radial-gradient(ellipse, rgba(74, 158, 158, 0.1) 0%, transparent 70%)",
-            borderRadius: "40% 60% 30% 70% / 60% 40% 60% 40%",
-            filter: "blur(30px)",
-            animationDuration: "18s",
-            animationDelay: "3s",
-          }}
-        />
-      </div>
+      <StarsBackground />
 
       {/* NAV */}
       <nav className="relative z-50 flex items-center justify-between px-8 py-6 max-w-6xl mx-auto">
@@ -434,7 +465,9 @@ export default function Index() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="relative z-10 py-32 px-6">
+      <section id="about" className="relative z-10 py-32 px-6 section-with-bg">
+        <SectionStars id="about" />
+        <div className="section-nebula" style={{ background: "radial-gradient(ellipse 70% 50% at 80% 50%, rgba(123,94,167,0.13) 0%, transparent 100%)" }} />
         <div className="max-w-5xl mx-auto">
           <div className="section-divider w-full max-w-2xl mb-20 mx-auto" />
           <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -490,7 +523,9 @@ export default function Index() {
       </section>
 
       {/* PROGRAM */}
-      <section id="program" className="relative z-10 py-32 px-6" style={{ background: "rgba(13, 21, 53, 0.3)" }}>
+      <section id="program" className="relative z-10 py-32 px-6 section-with-bg">
+        <SectionStars id="program" />
+        <div className="section-nebula" style={{ background: "radial-gradient(ellipse 90% 60% at 50% 100%, rgba(74,158,158,0.1) 0%, transparent 100%)" }} />
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-xs tracking-[0.3em] uppercase mb-4" style={{ color: "var(--spirit-teal)" }}>Программа вечера</p>
@@ -532,7 +567,9 @@ export default function Index() {
       </section>
 
       {/* PERFORMERS */}
-      <section id="performers" className="relative z-10 py-32 px-6">
+      <section id="performers" className="relative z-10 py-32 px-6 section-with-bg">
+        <SectionStars id="performers" />
+        <div className="section-nebula" style={{ background: "radial-gradient(ellipse 80% 60% at 20% 60%, rgba(123,94,167,0.12) 0%, transparent 100%)" }} />
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-xs tracking-[0.3em] uppercase mb-4" style={{ color: "var(--spirit-teal)" }}>Исполнители</p>
@@ -588,7 +625,9 @@ export default function Index() {
       <VideoCarousel />
 
       {/* TICKETS */}
-      <section id="tickets" className="relative z-10 py-32 px-6" style={{ background: "rgba(13, 21, 53, 0.4)" }}>
+      <section id="tickets" className="relative z-10 py-32 px-6 section-with-bg">
+        <SectionStars id="tickets" />
+        <div className="section-nebula" style={{ background: "radial-gradient(ellipse 60% 80% at 50% 20%, rgba(200,168,75,0.08) 0%, transparent 100%)" }} />
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <p className="text-xs tracking-[0.3em] uppercase mb-4" style={{ color: "var(--spirit-teal)" }}>Билеты</p>
