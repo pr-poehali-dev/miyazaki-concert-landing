@@ -96,6 +96,7 @@ export default function Index() {
       </section>
 
       <AboutSection />
+      <AtmosphereSection />
       <ProgramSection />
       <PerformersSection />
       <VideoCarousel />
