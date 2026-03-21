@@ -68,11 +68,9 @@ export default function Index() {
           <p
             className="stagger-4 text-base md:text-lg max-w-xl mx-auto mb-12 leading-relaxed"
             style={{ color: "rgba(200, 216, 240, 0.65)" }}
-          >
-            Виолончель и фортепиано. Московский Планетарий.
-            <br />
-            Музыка Хисаиси Дзё в окружении живых звёзд.
-          </p>
+          >Виолончель и Фортепиано
+Музыка Дзё Хисаиси
+Планетарий 1 </p>
 
           <div className="stagger-5 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="#tickets" className="btn-gold px-8 py-3.5 rounded text-sm w-full sm:w-auto cursor-pointer">
