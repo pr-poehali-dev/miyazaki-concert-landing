@@ -273,39 +273,45 @@ export function PerformersSection() {
         <div className="grid md:grid-cols-2 gap-8">
           {[
             {
-              name: "Анна Лебедева",
+              name: "Николай Максимов",
               role: "Виолончель",
-              bio: "Лауреат международных конкурсов, солистка Московской филармонии. Её виолончель способна рассказывать истории так, как не могут слова.",
-              emoji: "🎻",
+              bio: "Лауреат международных конкурсов, лауреат фестиваля «Новые имена», концертмейстер виолончелей оркестра консерватории. Своей харизмой и музыкальностью погружает слушателей в истории, которые не расскажешь словами.",
+              photo: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/6d35cabe-55be-4a46-b0a6-bd80265f5e70.jpeg",
               color: "var(--mist-purple)",
             },
             {
               name: "Михаил Соколов",
               role: "Фортепиано",
               bio: "Выпускник Московской консерватории. Специализируется на современной и кино-музыке, виртуозно сочетая классическую школу с живой импровизацией.",
-              emoji: "🎹",
+              photo: null,
               color: "var(--spirit-teal)",
             },
-          ].map(({ name, role, bio, emoji, color }) => (
-            <div key={name} className="performer-card rounded-2xl p-8 text-center">
-              <div
-                className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl"
-                style={{ background: `${color}20`, border: `1px solid ${color}40` }}
-              >
-                {emoji}
+          ].map(({ name, role, bio, photo, color }) => (
+            <div key={name} className="performer-card rounded-2xl overflow-hidden text-center">
+              {photo ? (
+                <div className="relative h-72 overflow-hidden">
+                  <img src={photo} alt={name} className="w-full h-full object-cover object-top" />
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(7,11,26,0.85) 0%, transparent 60%)" }} />
+                </div>
+              ) : (
+                <div className="h-72 flex items-center justify-center text-5xl" style={{ background: `${color}10` }}>
+                  🎹
+                </div>
+              )}
+              <div className="p-8">
+                <h3
+                  className="text-2xl font-light mb-1"
+                  style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--star-silver)" }}
+                >
+                  {name}
+                </h3>
+                <p className="text-xs tracking-[0.2em] uppercase mb-4" style={{ color }}>
+                  {role}
+                </p>
+                <p className="text-sm leading-relaxed" style={{ color: "rgba(200, 216, 240, 0.55)" }}>
+                  {bio}
+                </p>
               </div>
-              <h3
-                className="text-2xl font-light mb-1"
-                style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--star-silver)" }}
-              >
-                {name}
-              </h3>
-              <p className="text-xs tracking-[0.2em] uppercase mb-4" style={{ color }}>
-                {role}
-              </p>
-              <p className="text-sm leading-relaxed" style={{ color: "rgba(200, 216, 240, 0.55)" }}>
-                {bio}
-              </p>
             </div>
           ))}
         </div>
