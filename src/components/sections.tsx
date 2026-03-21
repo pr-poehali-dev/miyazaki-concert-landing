@@ -289,8 +289,8 @@ export function PerformersSection() {
           ].map(({ name, role, bio, photo, color }) => (
             <div key={name} className="performer-card rounded-2xl overflow-hidden text-center">
               {photo ? (
-                <div className="relative h-72 overflow-hidden">
-                  <img src={photo} alt={name} className="w-full h-full object-cover object-top" />
+                <div className="relative h-96 overflow-hidden">
+                  <img src={photo} alt={name} className="w-full h-full object-cover" style={{ objectPosition: "center 20%" }} />
                   <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(7,11,26,0.85) 0%, transparent 60%)" }} />
                 </div>
               ) : (
