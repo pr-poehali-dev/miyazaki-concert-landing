@@ -75,7 +75,7 @@ export function AboutSection() {
               {[
                 { icon: "MapPin", label: "Планетарий 1", sub: "просп. Гагарина, 35Н, Парк Швейцария" },
                 { icon: "Clock", label: "19 апреля 2025", sub: "Начало в 18:00" },
-                { icon: "Music", label: "~90 минут", sub: "Без антракта" },
+                { icon: "Music", label: "~75 минут", sub: "Без антракта" },
               ].map(({ icon, label, sub }) => (
                 <div key={label} className="flex items-center gap-3">
                   <div className="p-2 rounded-lg" style={{ background: "rgba(232, 201, 122, 0.1)" }}>
