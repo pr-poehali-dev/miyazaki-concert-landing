@@ -114,6 +114,87 @@ export function AboutSection() {
   );
 }
 
+export function AtmosphereSection() {
+  const moments = [
+    {
+      icon: "Star",
+      title: "Живой звук",
+      text: "Виолончель и фортепиано звучат вживую — каждая нота рождается здесь и сейчас, неповторимая и единственная в своём роде.",
+    },
+    {
+      icon: "Globe",
+      title: "Купол планетария",
+      text: "Над вами — настоящее звёздное небо. Проекция тысяч звёзд создаёт ощущение, что вы парите где-то между мирами Миядзаки.",
+    },
+    {
+      icon: "Wind",
+      title: "Полное погружение",
+      text: "Никаких экранов, никаких записей. Только музыка, темнота и звёзды — пространство, где можно по-настоящему отпустить себя.",
+    },
+    {
+      icon: "Heart",
+      title: "Общий момент",
+      text: "Рядом — люди, которые так же любят эти миры. Концерт объединяет зал в одно дыхание, в одно переживание.",
+    },
+  ];
+
+  return (
+    <section id="atmosphere" className="relative z-10 py-32 px-6 section-with-bg">
+      <SectionStars id="atmosphere" />
+      <div
+        className="section-nebula"
+        style={{ background: "radial-gradient(ellipse 70% 60% at 30% 60%, rgba(74,158,158,0.09) 0%, transparent 100%)" }}
+      />
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-16">
+          <p className="text-xs tracking-[0.3em] uppercase mb-4" style={{ color: "var(--spirit-teal)" }}>
+            Атмосфера
+          </p>
+          <h2
+            className="text-5xl md:text-6xl font-light leading-tight"
+            style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--star-silver)" }}
+          >
+            Магия живого
+            <br />
+            <em className="italic" style={{ color: "var(--star-gold)" }}>выступления</em>
+          </h2>
+          <p className="mt-6 text-base max-w-xl mx-auto leading-relaxed" style={{ color: "rgba(200, 216, 240, 0.6)" }}>
+            Живой концерт — это не просто музыка. Это момент, который невозможно поставить на паузу, перемотать или повторить. Он происходит один раз — и остаётся с вами навсегда.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {moments.map(({ icon, title, text }) => (
+            <div
+              key={title}
+              className="rounded-2xl p-8 flex gap-5"
+              style={{ background: "rgba(200, 216, 240, 0.04)", border: "1px solid rgba(232, 201, 122, 0.12)" }}
+            >
+              <div
+                className="shrink-0 w-11 h-11 rounded-xl flex items-center justify-center mt-0.5"
+                style={{ background: "rgba(232, 201, 122, 0.1)" }}
+              >
+                <Icon name={icon} fallback="Circle" size={18} style={{ color: "var(--star-gold)" }} />
+              </div>
+              <div>
+                <h3
+                  className="text-lg font-light mb-2"
+                  style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--star-silver)" }}
+                >
+                  {title}
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: "rgba(200, 216, 240, 0.55)" }}>
+                  {text}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function ProgramSection() {
   return (
     <section id="program" className="relative z-10 py-32 px-6 section-with-bg">

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import Icon from "@/components/ui/icon";
 import { StarsBackground } from "@/components/stars";
-import { AboutSection, ProgramSection, PerformersSection, TicketsSection, Footer } from "@/components/sections";
+import { AboutSection, AtmosphereSection, ProgramSection, PerformersSection, TicketsSection, Footer } from "@/components/sections";
 import VideoCarousel from "@/components/VideoCarousel";
 
 const heroImage = "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/files/ce1bc687-6056-4997-9310-c32fe42d72ec.jpg";
