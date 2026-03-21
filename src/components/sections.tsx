@@ -78,7 +78,7 @@ export function AboutSection() {
             <div className="flex flex-col gap-4">
               {[
                 { icon: "MapPin", label: "Московский Планетарий", sub: "Садовая-Кудринская, 5" },
-                { icon: "Clock", label: "14 июня 2025", sub: "Начало в 20:00" },
+                { icon: "Clock", label: "19 апреля 2025", sub: "Начало в 18:00" },
                 { icon: "Music", label: "~90 минут", sub: "Без антракта" },
               ].map(({ icon, label, sub }) => (
                 <div key={label} className="flex items-center gap-3">
@@ -350,7 +350,7 @@ export function TicketsSection() {
         </div>
 
         <p className="text-center text-xs mt-4" style={{ color: "rgba(200, 216, 240, 0.3)" }}>
-          Возврат билетов до 7 июня 2025 • 18+
+          Возврат билетов до 12 апреля 2025 • 18+
         </p>
       </div>
     </section>
@@ -364,7 +364,7 @@ export function Footer() {
         <div className="flex items-center gap-2">
           <span style={{ color: "var(--star-gold)" }}>✦</span>
           <span className="text-sm" style={{ color: "rgba(200, 216, 240, 0.4)", fontFamily: "'Golos Text', sans-serif" }}>
-            Миядзаки в Планетарии — 14 июня 2025
+            Миядзаки в Планетарии — 19 апреля 2025
           </span>
         </div>
         <div className="flex gap-6">

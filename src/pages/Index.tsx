@@ -48,7 +48,7 @@ export default function Index() {
             className="stagger-1 text-xs tracking-[0.35em] uppercase mb-6"
             style={{ color: "var(--spirit-teal)", fontFamily: "'Golos Text', sans-serif" }}
           >
-            14 июня 2025 • Начало в 20:00
+            19 апреля 2025 • Начало в 18:00
           </p>
 
           <h1

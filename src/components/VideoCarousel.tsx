@@ -7,7 +7,7 @@ const videos = [
   { id: 2, src: "", title: "Репетиция", caption: "Анна за виолончелью" },
   { id: 3, src: "", title: "Звёздный купол", caption: "Планетарий изнутри" },
   { id: 4, src: "", title: "Михаил", caption: "Фортепианный мотив" },
-  { id: 5, src: "", title: "Анонс", caption: "14 июня · Москва" },
+  { id: 5, src: "", title: "Анонс", caption: "19 апреля · Москва" },
 ];
 
 export default function VideoCarousel() {
