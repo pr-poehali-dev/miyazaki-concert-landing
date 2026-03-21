@@ -275,7 +275,8 @@ export function PerformersSection() {
             {
               name: "Николай Максимов",
               role: "Виолончель",
-              bio: "Лауреат международных конкурсов, лауреат фестиваля «Новые имена», концертмейстер виолончелей оркестра консерватории. Своей харизмой и музыкальностью погружает слушателей в истории, которые не расскажешь словами.",
+              bio: "Лауреат международных конкурсов, лауреат фестиваля «Новые имена», концертмейстер виолончелей оркестра консерватории.",
+              bio2: "Своей харизмой и музыкальностью погружает слушателей в истории, которые не расскажешь словами.",
               photo: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/6d35cabe-55be-4a46-b0a6-bd80265f5e70.jpeg",
               color: "var(--mist-purple)",
             },
@@ -283,10 +284,11 @@ export function PerformersSection() {
               name: "Михаил Соколов",
               role: "Фортепиано",
               bio: "Выпускник Московской консерватории. Специализируется на современной и кино-музыке, виртуозно сочетая классическую школу с живой импровизацией.",
+              bio2: null,
               photo: null,
               color: "var(--spirit-teal)",
             },
-          ].map(({ name, role, bio, photo, color }) => (
+          ].map(({ name, role, bio, bio2, photo, color }) => (
             <div key={name} className="performer-card rounded-2xl overflow-hidden text-center">
               {photo ? (
                 <div className="relative h-96 overflow-hidden">
@@ -311,6 +313,11 @@ export function PerformersSection() {
                 <p className="text-sm leading-relaxed" style={{ color: "rgba(200, 216, 240, 0.55)" }}>
                   {bio}
                 </p>
+                {bio2 && (
+                  <p className="text-sm leading-relaxed mt-3 italic" style={{ color: "var(--star-gold)", opacity: 0.75 }}>
+                    {bio2}
+                  </p>
+                )}
               </div>
             </div>
           ))}
