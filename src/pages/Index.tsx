@@ -38,9 +38,7 @@ export default function Index() {
           <a href="#performers" className="nav-link">Исполнители</a>
           <a href="#tickets" className="nav-link">Билеты</a>
         </div>
-        <a href="#tickets" className="btn-gold px-5 py-2 rounded text-sm cursor-pointer">
-          Купить билет
-        </a>
+        <a href="#tickets" className="btn-gold px-5 py-2 rounded text-sm cursor-pointer">Билеты</a>
       </nav>
 
       {/* HERO */}
