@@ -73,7 +73,7 @@ export function AboutSection() {
             <p className="text-base leading-relaxed mb-8" style={{ color: "rgba(200, 216, 240, 0.65)" }}>Купол Планетария 1 превратится в магическое пространство, где виолончель и фортепиано перенесут вас в миры Тоторо, Хаула и Сан — прямо среди звёзд.</p>
             <div className="flex flex-col gap-4">
               {[
-                { icon: "MapPin", label: "Московский Планетарий", sub: "Садовая-Кудринская, 5" },
+                { icon: "MapPin", label: "Планетарий 1", sub: "просп. Гагарина, 35Н, Парк Швейцария" },
                 { icon: "Clock", label: "19 апреля 2025", sub: "Начало в 18:00" },
                 { icon: "Music", label: "~90 минут", sub: "Без антракта" },
               ].map(({ icon, label, sub }) => (
