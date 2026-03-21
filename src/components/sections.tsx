@@ -372,9 +372,7 @@ export function Footer() {
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <span style={{ color: "var(--star-gold)" }}>✦</span>
-          <span className="text-sm" style={{ color: "rgba(200, 216, 240, 0.4)", fontFamily: "'Golos Text', sans-serif" }}>
-            Миядзаки в Планетарии — 19 апреля 2025
-          </span>
+          <span className="text-sm" style={{ color: "rgba(200, 216, 240, 0.4)", fontFamily: "'Golos Text', sans-serif" }}>Миядзаки в Планетарии 1 — 19 апреля 2025</span>
         </div>
         <div className="flex gap-6">
           <a href="#" className="text-xs nav-link">Политика конфиденциальности</a>
