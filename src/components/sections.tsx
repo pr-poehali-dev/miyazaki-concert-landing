@@ -358,9 +358,7 @@ export function TicketsSection() {
           </div>
         </div>
 
-        <p className="text-center text-xs mt-4" style={{ color: "rgba(200, 216, 240, 0.3)" }}>
-          Возврат билетов до 12 апреля 2025 • 18+
-        </p>
+        <p className="text-center text-xs mt-4" style={{ color: "rgba(200, 216, 240, 0.3)" }}>Возврат билетов до 15 апреля 2025 • 12+</p>
       </div>
     </section>
   );
