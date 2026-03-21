@@ -163,32 +163,49 @@ export function AtmosphereSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {moments.map(({ icon, title, text }) => (
+        <div className="grid md:grid-cols-2 gap-10 items-start">
+          {/* Фото */}
+          <div className="relative rounded-2xl overflow-hidden animate-glow-pulse" style={{ border: "1px solid rgba(232, 201, 122, 0.2)" }}>
+            <img
+              src="https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/a5c31b23-3709-46e6-b368-416c9c44acda.jpg"
+              alt="Атмосфера концерта в планетарии"
+              className="w-full object-cover"
+              style={{ maxHeight: 520 }}
+            />
             <div
-              key={title}
-              className="rounded-2xl p-8 flex gap-5"
-              style={{ background: "rgba(200, 216, 240, 0.04)", border: "1px solid rgba(232, 201, 122, 0.12)" }}
-            >
+              className="absolute inset-0"
+              style={{ background: "linear-gradient(to top, rgba(7,11,26,0.5) 0%, transparent 60%)" }}
+            />
+          </div>
+
+          {/* Карточки */}
+          <div className="flex flex-col gap-5">
+            {moments.map(({ icon, title, text }) => (
               <div
-                className="shrink-0 w-11 h-11 rounded-xl flex items-center justify-center mt-0.5"
-                style={{ background: "rgba(232, 201, 122, 0.1)" }}
+                key={title}
+                className="rounded-2xl p-6 flex gap-5"
+                style={{ background: "rgba(200, 216, 240, 0.04)", border: "1px solid rgba(232, 201, 122, 0.12)" }}
               >
-                <Icon name={icon} fallback="Circle" size={18} style={{ color: "var(--star-gold)" }} />
-              </div>
-              <div>
-                <h3
-                  className="text-lg font-light mb-2"
-                  style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--star-silver)" }}
+                <div
+                  className="shrink-0 w-11 h-11 rounded-xl flex items-center justify-center mt-0.5"
+                  style={{ background: "rgba(232, 201, 122, 0.1)" }}
                 >
-                  {title}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "rgba(200, 216, 240, 0.55)" }}>
-                  {text}
-                </p>
+                  <Icon name={icon} fallback="Circle" size={18} style={{ color: "var(--star-gold)" }} />
+                </div>
+                <div>
+                  <h3
+                    className="text-lg font-light mb-1"
+                    style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--star-silver)" }}
+                  >
+                    {title}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "rgba(200, 216, 240, 0.55)" }}>
+                    {text}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
