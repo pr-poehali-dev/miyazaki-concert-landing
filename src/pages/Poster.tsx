@@ -216,10 +216,12 @@ export default function Poster() {
 
         @media print {
           @page { size: A3 portrait; margin: 0; }
-          html, body { background: #000; }
+          html, body { background: #000; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
           .poster-page { padding: 0; background: #000; min-height: unset; }
           .print-btn { display: none !important; }
           .poster { width: 297mm; height: 420mm; }
+          .poster__bg { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+          .poster__overlay { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         }
       `}</style>
 
