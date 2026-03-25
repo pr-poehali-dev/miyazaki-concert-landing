@@ -1,5 +1,5 @@
 const heroImage =
-  "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/files/ce1bc687-6056-4997-9310-c32fe42d72ec.jpg";
+  "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/files/fc513390-762a-47c7-9a68-78117f64bf34.jpg";
 
 export default function Poster() {
   return (
