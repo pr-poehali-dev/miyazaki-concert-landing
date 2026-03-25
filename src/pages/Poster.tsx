@@ -232,25 +232,19 @@ export default function Poster() {
 
           <div className="poster__content">
 
-            {/* ВЕРХ — название */}
-            <div>
+            {/* ВЕРХ — название + дата */}
+            <div className="poster__top">
               <h1 className="poster__title">Мияд&shy;заки</h1>
-              <p className="poster__subtitle">Музыка под звёздным небом</p>
+              <div className="poster__date-block">
+                <div className="poster__date-num">19</div>
+                <div className="poster__date-month">апреля 2025</div>
+                <div className="poster__date-time">начало в 19:00</div>
+              </div>
             </div>
 
             {/* НИЗ */}
             <div className="poster__bottom">
-              <div className="poster__top">
-                <div>
-                  <p className="poster__tag">Живой концерт</p>
-                  <p className="poster__tag" style={{ color: "#c8d8f0", letterSpacing: "0.15em" }}>Нижний Новгород</p>
-                </div>
-                <div className="poster__date-block">
-                  <div className="poster__date-num">19</div>
-                  <div className="poster__date-month">апреля 2025</div>
-                  <div className="poster__date-time">начало в 19:00</div>
-                </div>
-              </div>
+              <p className="poster__subtitle">Музыка под звёздным небом</p>
 
               <div className="divider" />
 
