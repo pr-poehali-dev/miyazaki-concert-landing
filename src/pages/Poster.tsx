@@ -81,7 +81,7 @@ export default function Poster() {
 
         .poster__date-num {
           font-family: 'Cormorant Garamond', serif;
-          font-size: 72pt;
+          font-size: 100pt;
           font-weight: 700;
           color: #e8c97a;
           line-height: 0.85;
@@ -90,21 +90,23 @@ export default function Poster() {
 
         .poster__date-month {
           font-family: 'Golos Text', sans-serif;
-          font-size: 14pt;
+          font-size: 18pt;
           font-weight: 600;
           color: #c8d8f0;
           letter-spacing: 0.12em;
           text-transform: uppercase;
           text-shadow: 0 2px 12px rgba(0,0,0,0.9);
-          margin-top: 1mm;
+          margin-top: 2mm;
         }
 
         .poster__date-time {
-          font-family: 'Golos Text', sans-serif;
-          font-size: 11pt;
-          color: rgba(200,216,240,0.6);
-          letter-spacing: 0.1em;
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 36pt;
+          font-weight: 700;
+          color: #e8c97a;
+          letter-spacing: 0.05em;
           margin-top: 2mm;
+          text-shadow: 0 2px 20px rgba(0,0,0,0.9);
         }
 
         /* ── НИЗ: название + исполнители + адрес ── */
@@ -232,13 +234,16 @@ export default function Poster() {
 
           <div className="poster__content">
 
-            {/* ВЕРХ — название + дата */}
-            <div className="poster__top">
+            {/* ВЕРХ — пустой отступ */}
+            <div />
+
+            {/* СЕРЕДИНА — название + дата */}
+            <div className="poster__top" style={{ marginTop: "20mm" }}>
               <h1 className="poster__title">Мияд&shy;заки</h1>
               <div className="poster__date-block">
                 <div className="poster__date-num">19</div>
                 <div className="poster__date-month">апреля 2025</div>
-                <div className="poster__date-time">начало в 19:00</div>
+                <div className="poster__date-time">19:00</div>
               </div>
             </div>
 
