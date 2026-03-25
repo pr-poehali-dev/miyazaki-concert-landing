@@ -55,7 +55,7 @@ export default function Poster() {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          padding: 14mm 16mm 14mm;
+          padding: 10mm 16mm 14mm;
         }
 
         /* ── ВЕРХ: дата + место ── */
@@ -234,11 +234,8 @@ export default function Poster() {
 
           <div className="poster__content">
 
-            {/* ВЕРХ — пустой отступ */}
-            <div />
-
-            {/* СЕРЕДИНА — название + дата */}
-            <div className="poster__top" style={{ marginTop: "0mm" }}>
+            {/* ВЕРХ — название + дата */}
+            <div className="poster__top">
               <h1 className="poster__title">Мияд&shy;заки</h1>
               <div className="poster__date-block">
                 <div className="poster__date-num">19</div>
