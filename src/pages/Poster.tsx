@@ -55,7 +55,7 @@ export default function Poster() {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          padding: 10mm 16mm 14mm;
+          padding: 16mm 16mm 14mm;
         }
 
         /* ── ВЕРХ: дата + место ── */
