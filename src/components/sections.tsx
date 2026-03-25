@@ -76,38 +76,20 @@ export function AboutSection() {
             <p className="text-sm leading-relaxed mb-2 italic" style={{ color: "var(--star-gold)", opacity: 0.85 }}>Дзё Хисаиси</p>
             <p className="text-base leading-relaxed mb-8" style={{ color: "rgba(200, 216, 240, 0.65)" }}>Японский композитор и дирижёр, создавший музыкальный язык всей вселенной Миядзаки. За 40 лет сотрудничества написал саундтреки к более чем 100 фильмам и телесериалам, выпустил свыше 40 сольных альбомов. Его мелодии — узнаваемы с первых нот: нежные, эпические, пронзительные — они живут отдельной жизнью и вне экрана.</p>
 
-            <div className="flex items-center gap-6 rounded-2xl px-6 py-4 mb-8" style={{ background: "rgba(232,201,122,0.07)", border: "1px solid rgba(232,201,122,0.2)" }}>
-              <div className="text-center">
-                <p className="text-3xl font-semibold" style={{ color: "var(--star-gold)", fontFamily: "'Cormorant Garamond', serif" }}>19</p>
-                <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(200,216,240,0.5)" }}>апреля</p>
-                <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(200,216,240,0.5)" }}>2025</p>
-              </div>
-              <div style={{ width: "1px", height: "48px", background: "rgba(232,201,122,0.25)" }} />
-              <div className="text-center">
-                <p className="text-3xl font-semibold" style={{ color: "var(--star-gold)", fontFamily: "'Cormorant Garamond', serif" }}>19:00</p>
-                <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(200,216,240,0.5)" }}>начало</p>
-              </div>
-              <div style={{ width: "1px", height: "48px", background: "rgba(232,201,122,0.25)" }} />
-              <div>
-                <p className="text-sm font-medium" style={{ color: "var(--star-silver)" }}>Планетарий 1</p>
-                <p className="text-xs" style={{ color: "rgba(200,216,240,0.5)" }}>просп. Гагарина, 35Н</p>
-                <p className="text-xs" style={{ color: "rgba(200,216,240,0.5)" }}>Парк Швейцария</p>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-4">
+            <p className="text-xs tracking-[0.3em] uppercase mb-3 mt-2" style={{ color: "var(--spirit-teal)" }}>Дата и время</p>
+            <div className="flex flex-col gap-3">
               {[
                 { icon: "MapPin", label: "Планетарий 1", sub: "просп. Гагарина, 35Н, Парк Швейцария" },
-                { icon: "Clock", label: "19 апреля 2025", sub: "Начало в 19:00" },
+                { icon: "Clock", label: "19 апреля 2025 · 19:00", sub: "Начало концерта" },
                 { icon: "Music", label: "~75 минут", sub: "Без антракта" },
               ].map(({ icon, label, sub }) => (
-                <div key={label} className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg" style={{ background: "rgba(232, 201, 122, 0.1)" }}>
-                    <Icon name={icon} fallback="Circle" size={14} style={{ color: "var(--star-gold)" }} />
+                <div key={label} className="flex items-center gap-4 rounded-xl px-4 py-3" style={{ background: "rgba(232,201,122,0.06)", border: "1px solid rgba(232,201,122,0.15)" }}>
+                  <div className="p-2 rounded-lg flex-shrink-0" style={{ background: "rgba(232, 201, 122, 0.15)" }}>
+                    <Icon name={icon} fallback="Circle" size={16} style={{ color: "var(--star-gold)" }} />
                   </div>
                   <div>
-                    <p className="text-sm font-medium" style={{ color: "var(--star-silver)" }}>{label}</p>
-                    <p className="text-xs" style={{ color: "rgba(200, 216, 240, 0.45)" }}>{sub}</p>
+                    <p className="text-base font-semibold" style={{ color: "var(--star-silver)" }}>{label}</p>
+                    <p className="text-xs" style={{ color: "rgba(200, 216, 240, 0.55)" }}>{sub}</p>
                   </div>
                 </div>
               ))}
