@@ -45,10 +45,10 @@ export default function Index() {
       <section ref={heroRef} className="relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-6 -mt-20">
         <div className="max-w-4xl mx-auto">
           <p
-            className="stagger-1 text-xs tracking-[0.35em] uppercase mb-6"
-            style={{ color: "var(--spirit-teal)", fontFamily: "'Golos Text', sans-serif" }}
+            className="stagger-1 text-base md:text-lg tracking-[0.25em] uppercase mb-6 font-medium"
+            style={{ color: "var(--star-gold)", fontFamily: "'Golos Text', sans-serif", textShadow: "0 0 24px rgba(232,201,122,0.45)" }}
           >
-            19 апреля 2025 • Начало в 18:00
+            19 апреля 2025 • Начало в 19:00
           </p>
 
           <h1
