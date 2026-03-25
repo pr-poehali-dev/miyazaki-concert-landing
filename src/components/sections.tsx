@@ -75,10 +75,30 @@ export function AboutSection() {
             <p className="text-base leading-relaxed mb-4" style={{ color: "rgba(200, 216, 240, 0.65)" }}>Родился в 1941 году в Токио. Сооснователь легендарной студии Ghibli, режиссёр и мультипликатор, чьи фильмы переведены на десятки языков и собрали миллиарды зрителей по всему миру. Обладатель премии «Оскар» за «Унесённых призраками» (2003) и почётной премии Академии за вклад в мировой кинематограф. Его работы — «Мой сосед Тоторо», «Ходячий замок», «Принцесса Мононоке» — давно стали классикой мировой анимации и источником вдохновения для целых поколений.</p>
             <p className="text-sm leading-relaxed mb-2 italic" style={{ color: "var(--star-gold)", opacity: 0.85 }}>Дзё Хисаиси</p>
             <p className="text-base leading-relaxed mb-8" style={{ color: "rgba(200, 216, 240, 0.65)" }}>Японский композитор и дирижёр, создавший музыкальный язык всей вселенной Миядзаки. За 40 лет сотрудничества написал саундтреки к более чем 100 фильмам и телесериалам, выпустил свыше 40 сольных альбомов. Его мелодии — узнаваемы с первых нот: нежные, эпические, пронзительные — они живут отдельной жизнью и вне экрана.</p>
+
+            <div className="flex items-center gap-6 rounded-2xl px-6 py-4 mb-8" style={{ background: "rgba(232,201,122,0.07)", border: "1px solid rgba(232,201,122,0.2)" }}>
+              <div className="text-center">
+                <p className="text-3xl font-semibold" style={{ color: "var(--star-gold)", fontFamily: "'Cormorant Garamond', serif" }}>19</p>
+                <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(200,216,240,0.5)" }}>апреля</p>
+                <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(200,216,240,0.5)" }}>2025</p>
+              </div>
+              <div style={{ width: "1px", height: "48px", background: "rgba(232,201,122,0.25)" }} />
+              <div className="text-center">
+                <p className="text-3xl font-semibold" style={{ color: "var(--star-gold)", fontFamily: "'Cormorant Garamond', serif" }}>19:00</p>
+                <p className="text-xs uppercase tracking-widest" style={{ color: "rgba(200,216,240,0.5)" }}>начало</p>
+              </div>
+              <div style={{ width: "1px", height: "48px", background: "rgba(232,201,122,0.25)" }} />
+              <div>
+                <p className="text-sm font-medium" style={{ color: "var(--star-silver)" }}>Планетарий 1</p>
+                <p className="text-xs" style={{ color: "rgba(200,216,240,0.5)" }}>просп. Гагарина, 35Н</p>
+                <p className="text-xs" style={{ color: "rgba(200,216,240,0.5)" }}>Парк Швейцария</p>
+              </div>
+            </div>
+
             <div className="flex flex-col gap-4">
               {[
                 { icon: "MapPin", label: "Планетарий 1", sub: "просп. Гагарина, 35Н, Парк Швейцария" },
-                { icon: "Clock", label: "19 апреля 2025", sub: "Начало в 18:00" },
+                { icon: "Clock", label: "19 апреля 2025", sub: "Начало в 19:00" },
                 { icon: "Music", label: "~75 минут", sub: "Без антракта" },
               ].map(({ icon, label, sub }) => (
                 <div key={label} className="flex items-center gap-3">
