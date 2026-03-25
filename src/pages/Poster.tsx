@@ -13,14 +13,34 @@ export default function Poster() {
     if (!posterRef.current) return;
     setLoading(true);
     try {
+      // Загружаем картинку как base64 чтобы обойти CORS
+      const resp = await fetch(heroImage);
+      const blob = await resp.blob();
+      const base64 = await new Promise<string>((res) => {
+        const reader = new FileReader();
+        reader.onload = () => res(reader.result as string);
+        reader.readAsDataURL(blob);
+      });
+
+      // Временно заменяем фон на base64
+      const bgEl = posterRef.current.querySelector(".poster__bg") as HTMLElement;
+      const originalBg = bgEl.style.backgroundImage;
+      bgEl.style.backgroundImage = `url(${base64})`;
+
+      await new Promise((r) => setTimeout(r, 100));
+
       const canvas = await html2canvas(posterRef.current, {
         scale: 3,
         useCORS: true,
         allowTaint: true,
-        backgroundColor: null,
+        backgroundColor: "#000",
         width: posterRef.current.offsetWidth,
         height: posterRef.current.offsetHeight,
+        logging: false,
       });
+
+      bgEl.style.backgroundImage = originalBg;
+
       const imgData = canvas.toDataURL("image/jpeg", 1.0);
       const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a3" });
       pdf.addImage(imgData, "JPEG", 0, 0, 297, 420);
