@@ -238,7 +238,7 @@ export default function Poster() {
             <div />
 
             {/* СЕРЕДИНА — название + дата */}
-            <div className="poster__top" style={{ marginTop: "20mm" }}>
+            <div className="poster__top" style={{ marginTop: "8mm" }}>
               <h1 className="poster__title">Мияд&shy;заки</h1>
               <div className="poster__date-block">
                 <div className="poster__date-num">19</div>
