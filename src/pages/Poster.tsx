@@ -1,7 +1,34 @@
+import { useRef, useState } from "react";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+
 const heroImage =
   "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/files/ce1bc687-6056-4997-9310-c32fe42d72ec.jpg";
 
 export default function Poster() {
+  const posterRef = useRef<HTMLDivElement>(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleSavePDF = async () => {
+    if (!posterRef.current) return;
+    setLoading(true);
+    try {
+      const canvas = await html2canvas(posterRef.current, {
+        scale: 3,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: null,
+        width: posterRef.current.offsetWidth,
+        height: posterRef.current.offsetHeight,
+      });
+      const imgData = canvas.toDataURL("image/jpeg", 1.0);
+      const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a3" });
+      pdf.addImage(imgData, "JPEG", 0, 0, 297, 420);
+      pdf.save("miyadzaki-poster.pdf");
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <>
       <style>{`
@@ -214,45 +241,15 @@ export default function Poster() {
         }
         .print-btn:hover { background: #f0d68a; }
 
-        @media print {
-          @page { size: A3 portrait; margin: 0; }
-          html, body {
-            background: #000;
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-            width: 297mm;
-            height: 420mm;
-            overflow: hidden;
-          }
-          .poster-page {
-            padding: 0;
-            background: #000;
-            min-height: unset;
-            display: block;
-            width: 297mm;
-            height: 420mm;
-            overflow: hidden;
-          }
-          .print-btn { display: none !important; }
-          .poster {
-            width: 297mm;
-            height: 420mm;
-            transform: none;
-            overflow: hidden;
-          }
-          .poster__bg, .poster__overlay {
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-          }
-        }
+
       `}</style>
 
-      <button className="print-btn" onClick={() => window.print()}>
-        Сохранить PDF / Печать
+      <button className="print-btn" onClick={handleSavePDF} disabled={loading}>
+        {loading ? "Генерирую PDF..." : "Сохранить PDF"}
       </button>
 
       <div className="poster-page">
-        <div className="poster">
+        <div className="poster" ref={posterRef}>
           <div className="poster__bg" />
           <div className="poster__overlay" />
 
