@@ -2,15 +2,13 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import Icon from "@/components/ui/icon";
 import { SectionStars } from "@/components/stars";
 
-const BASE = "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/";
-
 const videos = [
-  { id: 1, src: `${BASE}1`, title: "За кулисами", caption: "Подготовка к концерту" },
-  { id: 2, src: `${BASE}2`, title: "Репетиция", caption: "Анна за виолончелью" },
-  { id: 3, src: `${BASE}3`, title: "Звёздный купол", caption: "Планетарий изнутри" },
-  { id: 4, src: `${BASE}4`, title: "Михаил", caption: "Фортепианный мотив" },
-  { id: 5, src: `${BASE}5`, title: "Анонс", caption: "19 апреля · Москва" },
-  { id: 6, src: `${BASE}6`, title: "Финал", caption: "Музыка под звёздным небом" },
+  { id: 1, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/5d04cb0b-d556-492e-9bad-1aa0df14e347.mov", title: "За кулисами", caption: "Подготовка к концерту" },
+  { id: 2, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/003db5c2-2d34-4984-93f0-2cd59f114ee1.mov", title: "Репетиция", caption: "Анна за виолончелью" },
+  { id: 3, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/3f4a0193-6660-470e-a863-21dfa8ddf00f.mov", title: "Звёздный купол", caption: "Планетарий изнутри" },
+  { id: 4, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/00832e22-7799-4ad1-856b-b06607c1c60e.mov", title: "Михаил", caption: "Фортепианный мотив" },
+  { id: 5, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/82e1eebc-64c5-4e14-8de3-1a9b9b9256a4.mov", title: "Анонс", caption: "19 апреля · Москва" },
+  { id: 6, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/78f833e8-f41f-42de-8f23-8ea6f13fe79a.mov", title: "Финал", caption: "Музыка под звёздным небом" },
 ];
 
 export default function VideoCarousel() {
