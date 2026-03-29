@@ -2,12 +2,15 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import Icon from "@/components/ui/icon";
 import { SectionStars } from "@/components/stars";
 
+const BASE = "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/";
+
 const videos = [
-  { id: 1, src: "", title: "За кулисами", caption: "Подготовка к концерту" },
-  { id: 2, src: "", title: "Репетиция", caption: "Анна за виолончелью" },
-  { id: 3, src: "", title: "Звёздный купол", caption: "Планетарий изнутри" },
-  { id: 4, src: "", title: "Михаил", caption: "Фортепианный мотив" },
-  { id: 5, src: "", title: "Анонс", caption: "19 апреля · Москва" },
+  { id: 1, src: `${BASE}1`, title: "За кулисами", caption: "Подготовка к концерту" },
+  { id: 2, src: `${BASE}2`, title: "Репетиция", caption: "Анна за виолончелью" },
+  { id: 3, src: `${BASE}3`, title: "Звёздный купол", caption: "Планетарий изнутри" },
+  { id: 4, src: `${BASE}4`, title: "Михаил", caption: "Фортепианный мотив" },
+  { id: 5, src: `${BASE}5`, title: "Анонс", caption: "19 апреля · Москва" },
+  { id: 6, src: `${BASE}6`, title: "Финал", caption: "Музыка под звёздным небом" },
 ];
 
 export default function VideoCarousel() {
