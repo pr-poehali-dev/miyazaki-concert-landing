@@ -133,7 +133,7 @@ export default function VideoCarousel() {
                   key={video.id}
                   className="video-slot flex-shrink-0"
                   style={{ width: `calc(${100 / VISIBLE}% - ${(16 * (VISIBLE - 1)) / VISIBLE}px)` }}
-                  onClick={() => { if (!wasDragged.current) openVideo(idx); }}
+                  onClick={() => { console.log("click idx:", idx, "wasDragged:", wasDragged.current); openVideo(idx); }}
                 >
                   <div className="video-poster">
                     {video.src ? (
