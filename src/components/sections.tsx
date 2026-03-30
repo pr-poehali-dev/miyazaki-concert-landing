@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Icon from "@/components/ui/icon";
 import { SectionStars } from "@/components/stars";
 
@@ -342,6 +343,20 @@ export function PerformersSection() {
 }
 
 export function TicketsSection() {
+  useEffect(() => {
+    if (document.getElementById("cb-controller")) return;
+    const s = document.createElement("script");
+    s.type = "text/javascript";
+    s.id = "cb-controller";
+    s.async = true;
+    s.src = "https://cbiletom.ru/widget/1/assets/controller.js?itok=" + Math.round(1 * new Date().getTime() / 3600000);
+    s.onload = function () {
+      const w = window as { CB?: new (doc: Document, opts: object) => void };
+      if (w.CB) new w.CB(document, { id: 13292, view: 2 });
+    };
+    document.head.appendChild(s);
+  }, []);
+
   return (
     <section id="tickets" className="relative z-10 py-32 px-6 section-with-bg">
       <SectionStars id="tickets" />
@@ -357,15 +372,7 @@ export function TicketsSection() {
         </div>
 
         {/* ── Виджет cbiletom ── */}
-        <div className="mb-12" id="cb-widget-wrapper">
-          <script
-            id="cb-js"
-            dangerouslySetInnerHTML={{
-              __html: `(function(d){if (typeof d.CB == 'object') return;var s = d.createElement('script');s.type = 'text/javascript'; s.id = 'cb-controller';s.async = 1;s.src = 'https://cbiletom.ru/widget/1/assets/controller.js?itok=' + Math.round(1* new Date() / 3600000);s.onload = function() {new CB(d, {id:13292, view:2});};d.querySelector('head').append(s);})(document);`
-            }}
-          />
-        </div>
-
+        <div className="mb-12" id="cb-widget-wrapper" />
 
       </div>
     </section>
