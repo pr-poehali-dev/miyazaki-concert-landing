@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Icon from "@/components/ui/icon";
 import { SectionStars } from "@/components/stars";
 
@@ -11,18 +11,12 @@ const videos = [
   { id: 6, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/01eed1dd-517a-48e0-8c6c-4f0421ea94c3.mp4", title: "Финал", caption: "Музыка под звёздным небом" },
 ];
 
+const VISIBLE = 3;
+
 export default function VideoCarousel() {
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragStart, setDragStart] = useState(0);
-  const [dragDelta, setDragDelta] = useState(0);
-  const wasDragged = useRef(false);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const modalVideoRef = useRef<HTMLVideoElement | null>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  const VISIBLE = 3;
   const maxSlide = Math.max(0, videos.length - VISIBLE);
 
   const prev = useCallback(() => setCurrentSlide((s) => Math.max(0, s - 1)), []);
@@ -40,42 +34,12 @@ export default function VideoCarousel() {
     setActiveIdx(null);
   };
 
-  const dragStartX = useRef(0);
-  const dragDeltaRef = useRef(0);
-
-  const onPointerDown = (e: React.PointerEvent) => {
-    dragStartX.current = e.clientX;
-    dragDeltaRef.current = 0;
-    wasDragged.current = false;
-    setIsDragging(true);
-    setDragStart(e.clientX);
-    setDragDelta(0);
-    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-  };
-  const onPointerMove = (e: React.PointerEvent) => {
-    if (!isDragging) return;
-    const delta = e.clientX - dragStartX.current;
-    dragDeltaRef.current = delta;
-    setDragDelta(delta);
-    if (Math.abs(delta) > 8) wasDragged.current = true;
-  };
-  const onPointerUp = () => {
-    const delta = dragDeltaRef.current;
-    if (delta < -60) next();
-    else if (delta > 60) prev();
-    setIsDragging(false);
-    setDragDelta(0);
-  };
-
   useEffect(() => {
-    if (activeIdx !== null && modalVideoRef.current) {
-      const vid = modalVideoRef.current;
-      console.log("modal video ref:", vid);
-      console.log("modal video src:", vid.src);
-      console.log("modal video readyState:", vid.readyState);
-      vid.play().then(() => console.log("play OK")).catch((e) => console.error("play error:", e));
-    } else {
-      console.log("activeIdx:", activeIdx, "ref:", modalVideoRef.current);
+    if (activeIdx !== null) {
+      const timer = setTimeout(() => {
+        modalVideoRef.current?.play().catch(() => {});
+      }, 100);
+      return () => clearTimeout(timer);
     }
   }, [activeIdx]);
 
@@ -83,15 +47,16 @@ export default function VideoCarousel() {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") closeVideo(); };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [activeIdx]);
+  }, []);
 
   const slideOffset = currentSlide * (100 / VISIBLE);
 
   return (
-    <section id="videos" className="relative z-10 py-32 px-6 section-with-bg">
+    <section id="videos" className="relative py-32 px-6 section-with-bg" style={{ zIndex: 10 }}>
       <SectionStars id="videos" />
       <div className="section-nebula" style={{ background: "radial-gradient(ellipse 80% 50% at 50% 50%, rgba(74,100,158,0.1) 0%, transparent 100%)" }} />
-      <div className="max-w-5xl mx-auto">
+
+      <div className="max-w-5xl mx-auto" style={{ position: "relative", zIndex: 20 }}>
         <div className="text-center mb-14">
           <p className="text-xs tracking-[0.3em] uppercase mb-4" style={{ color: "var(--spirit-teal)" }}>Видео</p>
           <h2 className="text-5xl md:text-6xl font-light" style={{ fontFamily: "'Cormorant Garamond', serif", color: "var(--star-silver)" }}>
@@ -101,75 +66,56 @@ export default function VideoCarousel() {
           </h2>
         </div>
 
-        <div className="relative">
-          <button
-            onClick={prev}
-            disabled={currentSlide === 0}
-            className="video-arrow left-0"
-            style={{ left: "-20px" }}
-          >
+        <div style={{ position: "relative" }}>
+          {/* Стрелки */}
+          <button onClick={prev} disabled={currentSlide === 0} className="video-arrow" style={{ position: "absolute", left: "-20px", top: "50%", transform: "translateY(-50%)", zIndex: 30 }}>
             <Icon name="ChevronLeft" size={20} />
           </button>
-          <button
-            onClick={next}
-            disabled={currentSlide >= maxSlide}
-            className="video-arrow right-0"
-            style={{ right: "-20px" }}
-          >
+          <button onClick={next} disabled={currentSlide >= maxSlide} className="video-arrow" style={{ position: "absolute", right: "-20px", top: "50%", transform: "translateY(-50%)", zIndex: 30 }}>
             <Icon name="ChevronRight" size={20} />
           </button>
 
-          <div className="overflow-hidden rounded-2xl">
+          <div style={{ overflow: "hidden", borderRadius: "16px" }}>
             <div
-              ref={trackRef}
-              className="flex"
               style={{
-                transform: `translateX(calc(-${slideOffset}% + ${isDragging ? dragDelta : 0}px))`,
-                transition: isDragging ? "none" : "transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                display: "flex",
                 gap: "16px",
-                cursor: isDragging ? "grabbing" : "grab",
-                userSelect: "none",
+                transform: `translateX(calc(-${slideOffset}% - ${currentSlide * 16 / VISIBLE}px))`,
+                transition: "transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
               }}
-              onPointerDown={onPointerDown}
-              onPointerMove={onPointerMove}
-              onPointerUp={onPointerUp}
-              onPointerLeave={onPointerUp}
             >
               {videos.map((video, idx) => (
-                <div
+                <button
                   key={video.id}
+                  type="button"
+                  onClick={() => openVideo(idx)}
                   className="video-slot flex-shrink-0"
-                  style={{ width: `calc(${100 / VISIBLE}% - ${(16 * (VISIBLE - 1)) / VISIBLE}px)` }}
-                  onPointerUp={(e) => { e.stopPropagation(); if (!wasDragged.current) openVideo(idx); }}
+                  style={{
+                    width: `calc(${100 / VISIBLE}% - ${(16 * (VISIBLE - 1)) / VISIBLE}px)`,
+                    background: "none",
+                    border: "none",
+                    padding: 0,
+                    cursor: "pointer",
+                    position: "relative",
+                    zIndex: 25,
+                  }}
                 >
                   <div className="video-poster">
-                    {video.src ? (
-                      <video
-                        ref={(el) => { videoRefs.current[idx] = el; }}
-                        src={video.src}
-                        muted
-                        loop
-                        playsInline
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div className="video-placeholder">
-                        <div className="video-placeholder-inner">
-                          <div className="w-12 h-12 rounded-full flex items-center justify-center mb-3"
-                            style={{ background: "rgba(232, 201, 122, 0.15)", border: "1px solid rgba(232,201,122,0.3)" }}>
-                            <Icon name="Video" size={20} style={{ color: "var(--star-gold)" }} />
-                          </div>
-                          <p className="text-xs text-center" style={{ color: "rgba(200,216,240,0.4)" }}>Видео<br />появится позже</p>
-                        </div>
-                      </div>
-                    )}
-                    <div className="video-overlay">
+                    <video
+                      src={video.src}
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="video-overlay" style={{ opacity: 1, background: "linear-gradient(to top, rgba(7,11,26,0.7) 0%, rgba(7,11,26,0.1) 60%, transparent 100%)" }}>
                       <div className="play-btn">
                         <Icon name="Play" size={22} style={{ color: "var(--night-deep)", marginLeft: "3px" }} />
                       </div>
                     </div>
                   </div>
-                </div>
+                </button>
               ))}
             </div>
           </div>
@@ -188,32 +134,26 @@ export default function VideoCarousel() {
       </div>
 
       {activeIdx !== null && (
-        <div className="video-modal-backdrop" onClick={closeVideo}>
-          <div className="video-modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="video-modal-close" onClick={closeVideo}>
-              <Icon name="X" size={20} style={{ color: "var(--star-silver)" }} />
+        <div
+          style={{ position: "fixed", inset: 0, zIndex: 9999, background: "rgba(7,11,26,0.95)", backdropFilter: "blur(20px)", display: "flex", alignItems: "center", justifyContent: "center", padding: "24px" }}
+          onClick={closeVideo}
+        >
+          <div style={{ position: "relative", width: "100%", maxWidth: "380px" }} onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={closeVideo}
+              style={{ position: "absolute", top: "-40px", right: 0, background: "none", border: "none", cursor: "pointer", zIndex: 10 }}
+            >
+              <Icon name="X" size={24} style={{ color: "var(--star-silver)" }} />
             </button>
-            <div className="video-modal-player">
-              {videos[activeIdx].src ? (
-                <video
-                  key={activeIdx}
-                  ref={modalVideoRef}
-                  src={videos[activeIdx].src}
-                  controls
-                  autoPlay
-                  playsInline
-                  className="w-full h-full object-contain rounded-2xl"
-                  style={{ maxHeight: "85vh" }}
-                />
-              ) : (
-                <div className="video-modal-placeholder">
-                  <Icon name="Video" size={40} style={{ color: "var(--star-gold)", marginBottom: "12px" }} />
-                  <p style={{ color: "rgba(200,216,240,0.45)", fontSize: "0.85rem", marginTop: "6px" }}>
-                    Видео будет доступно ближе к дате концерта
-                  </p>
-                </div>
-              )}
-            </div>
+            <video
+              key={activeIdx}
+              ref={modalVideoRef}
+              src={videos[activeIdx].src}
+              controls
+              autoPlay
+              playsInline
+              style={{ width: "100%", borderRadius: "16px", maxHeight: "85vh", display: "block" }}
+            />
           </div>
         </div>
       )}
