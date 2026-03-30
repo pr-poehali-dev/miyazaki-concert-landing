@@ -22,7 +22,10 @@ export default function VideoCarousel() {
   const prev = useCallback(() => setCurrentSlide((s) => Math.max(0, s - 1)), []);
   const next = useCallback(() => setCurrentSlide((s) => Math.min(maxSlide, s + 1)), [maxSlide]);
 
+  const pendingPlay = useRef(false);
+
   const openVideo = (idx: number) => {
+    pendingPlay.current = true;
     setActiveIdx(idx);
   };
 
@@ -34,14 +37,13 @@ export default function VideoCarousel() {
     setActiveIdx(null);
   };
 
-  useEffect(() => {
-    if (activeIdx !== null) {
-      const timer = setTimeout(() => {
-        modalVideoRef.current?.play().catch(() => {});
-      }, 100);
-      return () => clearTimeout(timer);
+  const handleVideoReady = (el: HTMLVideoElement | null) => {
+    modalVideoRef.current = el;
+    if (el && pendingPlay.current) {
+      pendingPlay.current = false;
+      el.play().catch(() => {});
     }
-  }, [activeIdx]);
+  };
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") closeVideo(); };
@@ -147,10 +149,9 @@ export default function VideoCarousel() {
             </button>
             <video
               key={activeIdx}
-              ref={modalVideoRef}
+              ref={handleVideoReady}
               src={videos[activeIdx].src}
               controls
-              autoPlay
               playsInline
               style={{ width: "100%", borderRadius: "16px", maxHeight: "85vh", display: "block" }}
             />
