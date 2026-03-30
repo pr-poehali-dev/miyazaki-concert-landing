@@ -18,6 +18,7 @@ export default function VideoCarousel() {
   const [dragStart, setDragStart] = useState(0);
   const [dragDelta, setDragDelta] = useState(0);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const modalVideoRef = useRef<HTMLVideoElement | null>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
   const VISIBLE = 3;
@@ -28,14 +29,12 @@ export default function VideoCarousel() {
 
   const openVideo = (idx: number) => {
     setActiveIdx(idx);
-    const vid = videoRefs.current[idx];
-    if (vid) { vid.muted = false; vid.play(); }
   };
 
   const closeVideo = () => {
-    if (activeIdx !== null) {
-      const vid = videoRefs.current[activeIdx];
-      if (vid) { vid.pause(); vid.currentTime = 0; }
+    if (modalVideoRef.current) {
+      modalVideoRef.current.pause();
+      modalVideoRef.current.currentTime = 0;
     }
     setActiveIdx(null);
   };
@@ -174,11 +173,11 @@ export default function VideoCarousel() {
             <div className="video-modal-player">
               {videos[activeIdx].src ? (
                 <video
-                  ref={(el) => { videoRefs.current[activeIdx] = el; }}
+                  key={activeIdx}
+                  ref={modalVideoRef}
                   src={videos[activeIdx].src}
                   controls
                   autoPlay
-                  loop
                   playsInline
                   className="w-full h-full object-contain rounded-2xl"
                   style={{ maxHeight: "85vh" }}
