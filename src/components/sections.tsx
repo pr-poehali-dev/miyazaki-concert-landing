@@ -356,14 +356,15 @@ export function TicketsSection() {
           </h2>
         </div>
 
-        <div className="mb-12 rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(232,201,122,0.15)" }}>
+        <div className="mb-12 rounded-2xl" style={{ border: "1px solid rgba(232,201,122,0.15)", overflow: "visible" }}>
           <iframe
             src="https://cbiletom.ru/widget/1/frame.php?id=13292"
             width="100%"
-            height="650"
+            height="800"
             frameBorder="0"
-            scrolling="auto"
-            style={{ display: "block", background: "transparent" }}
+            scrolling="yes"
+            style={{ display: "block", background: "transparent", minHeight: "600px", width: "100%", border: "none" }}
+            allow="payment"
           />
         </div>
 
