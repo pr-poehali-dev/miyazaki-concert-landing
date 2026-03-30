@@ -372,7 +372,7 @@ export function TicketsSection() {
         </div>
 
         {/* ── Виджет cbiletom ── */}
-        <div className="mb-12" id="cb-widget-wrapper" />
+        <div className="mb-12" id="cb-js" />
 
       </div>
     </section>
