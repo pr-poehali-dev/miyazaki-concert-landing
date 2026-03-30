@@ -176,8 +176,14 @@ export function AtmosphereSection() {
             />
             <div
               className="absolute inset-0"
-              style={{ background: "linear-gradient(to top, rgba(7,11,26,0.5) 0%, transparent 60%)" }}
+              style={{ background: "linear-gradient(to top, rgba(7,11,26,0.6) 0%, transparent 60%)" }}
             />
+            <p
+              className="absolute bottom-4 left-0 right-0 text-center text-xs tracking-[0.15em] uppercase"
+              style={{ color: "rgba(232, 201, 122, 0.75)" }}
+            >
+              Концерт — «Музыка. Кино и Любовь»
+            </p>
           </div>
 
           {/* Карточки */}
