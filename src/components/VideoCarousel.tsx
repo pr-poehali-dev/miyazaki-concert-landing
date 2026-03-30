@@ -58,7 +58,13 @@ export default function VideoCarousel() {
 
   useEffect(() => {
     if (activeIdx !== null && modalVideoRef.current) {
-      modalVideoRef.current.play().catch(() => {});
+      const vid = modalVideoRef.current;
+      console.log("modal video ref:", vid);
+      console.log("modal video src:", vid.src);
+      console.log("modal video readyState:", vid.readyState);
+      vid.play().then(() => console.log("play OK")).catch((e) => console.error("play error:", e));
+    } else {
+      console.log("activeIdx:", activeIdx, "ref:", modalVideoRef.current);
     }
   }, [activeIdx]);
 
