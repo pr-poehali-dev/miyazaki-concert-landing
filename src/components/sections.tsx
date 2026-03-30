@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Icon from "@/components/ui/icon";
 import { SectionStars } from "@/components/stars";
 
@@ -343,20 +342,6 @@ export function PerformersSection() {
 }
 
 export function TicketsSection() {
-  useEffect(() => {
-    if (document.getElementById("cb-controller")) return;
-    const s = document.createElement("script");
-    s.type = "text/javascript";
-    s.id = "cb-controller";
-    s.async = true;
-    s.src = "https://cbiletom.ru/widget/1/assets/controller.js?itok=" + Math.round(1 * new Date().getTime() / 3600000);
-    s.onload = function () {
-      const w = window as { CB?: new (doc: Document, opts: object) => void };
-      if (w.CB) new w.CB(document, { id: 13292, view: 2 });
-    };
-    document.head.appendChild(s);
-  }, []);
-
   return (
     <section id="tickets" className="relative z-10 py-32 px-6 section-with-bg">
       <SectionStars id="tickets" />
@@ -371,8 +356,16 @@ export function TicketsSection() {
           </h2>
         </div>
 
-        {/* ── Виджет cbiletom ── */}
-        <div className="mb-12" id="cb-js" />
+        <div className="mb-12 rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(232,201,122,0.15)" }}>
+          <iframe
+            src="https://cbiletom.ru/widget/1/frame.php?id=13292"
+            width="100%"
+            height="600"
+            frameBorder="0"
+            scrolling="auto"
+            style={{ display: "block", background: "transparent" }}
+          />
+        </div>
 
       </div>
     </section>
