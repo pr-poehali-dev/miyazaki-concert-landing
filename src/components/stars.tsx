@@ -1,7 +1,8 @@
 import { memo } from "react";
 
-const STARS_COUNT = 60;
-const SECTION_STARS = 30;
+const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+const STARS_COUNT = isMobile ? 25 : 60;
+const SECTION_STARS = isMobile ? 10 : 30;
 
 function makeStars(count: number, seed: number) {
   return Array.from({ length: count }, (_, i) => {

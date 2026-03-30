@@ -768,3 +768,23 @@
   background: rgba(232, 201, 122, 0.3);
   border-radius: 2px;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .star,
+  .animate-float-up,
+  .animate-fade-in-slow,
+  .animate-drift,
+  .animate-glow-pulse,
+  .animate-scroll-indicator,
+  .gold-shimmer {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .star {
+    animation: twinkle var(--twinkle-duration, 4s) ease-in-out
+      var(--twinkle-delay, 0s) infinite;
+  }
+}
