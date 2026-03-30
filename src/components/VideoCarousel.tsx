@@ -40,22 +40,29 @@ export default function VideoCarousel() {
     setActiveIdx(null);
   };
 
+  const dragStartX = useRef(0);
+  const dragDeltaRef = useRef(0);
+
   const onPointerDown = (e: React.PointerEvent) => {
+    dragStartX.current = e.clientX;
+    dragDeltaRef.current = 0;
+    wasDragged.current = false;
     setIsDragging(true);
     setDragStart(e.clientX);
     setDragDelta(0);
-    wasDragged.current = false;
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
   };
   const onPointerMove = (e: React.PointerEvent) => {
     if (!isDragging) return;
-    const delta = e.clientX - dragStart;
+    const delta = e.clientX - dragStartX.current;
+    dragDeltaRef.current = delta;
     setDragDelta(delta);
-    if (Math.abs(delta) > 10) wasDragged.current = true;
+    if (Math.abs(delta) > 8) wasDragged.current = true;
   };
   const onPointerUp = () => {
-    if (dragDelta < -60) next();
-    else if (dragDelta > 60) prev();
+    const delta = dragDeltaRef.current;
+    if (delta < -60) next();
+    else if (delta > 60) prev();
     setIsDragging(false);
     setDragDelta(0);
   };
@@ -133,7 +140,7 @@ export default function VideoCarousel() {
                   key={video.id}
                   className="video-slot flex-shrink-0"
                   style={{ width: `calc(${100 / VISIBLE}% - ${(16 * (VISIBLE - 1)) / VISIBLE}px)` }}
-                  onClick={() => { console.log("click idx:", idx, "wasDragged:", wasDragged.current); openVideo(idx); }}
+                  onPointerUp={(e) => { e.stopPropagation(); if (!wasDragged.current) openVideo(idx); }}
                 >
                   <div className="video-poster">
                     {video.src ? (
