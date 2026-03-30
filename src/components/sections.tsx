@@ -360,7 +360,7 @@ export function TicketsSection() {
           <iframe
             src="https://cbiletom.ru/widget/1/frame.php?id=13292"
             width="100%"
-            height="500"
+            height="650"
             frameBorder="0"
             scrolling="auto"
             style={{ display: "block", background: "transparent" }}
