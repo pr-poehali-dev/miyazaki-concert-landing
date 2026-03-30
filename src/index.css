@@ -72,8 +72,8 @@
   background-position: center 30%;
   background-repeat: no-repeat;
   opacity: 0.18;
-  filter: blur(2px) saturate(0.6);
-  transform: scale(1.05);
+  filter: saturate(0.6);
+  will-change: transform;
 }
 
 .global-bg-overlay {

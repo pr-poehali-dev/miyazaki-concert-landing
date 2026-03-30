@@ -1,5 +1,7 @@
-const STARS_COUNT = 120;
-const SECTION_STARS = 60;
+import { memo } from "react";
+
+const STARS_COUNT = 60;
+const SECTION_STARS = 30;
 
 function makeStars(count: number, seed: number) {
   return Array.from({ length: count }, (_, i) => {
@@ -32,7 +34,7 @@ export const sectionStarSets: Record<string, ReturnType<typeof makeStars>> = {
   tickets: makeStars(SECTION_STARS, 505),
 };
 
-function StarDot({ s }: { s: ReturnType<typeof makeStars>[number] }) {
+const StarDot = memo(function StarDot({ s }: { s: ReturnType<typeof makeStars>[number] }) {
   return (
     <div
       className="star star-drift"
@@ -51,21 +53,21 @@ function StarDot({ s }: { s: ReturnType<typeof makeStars>[number] }) {
       } as React.CSSProperties}
     />
   );
-}
+});
 
-export function StarsBackground() {
+export const StarsBackground = memo(function StarsBackground() {
   return (
     <div className="stars-bg">
       {bgStars.map((s, i) => <StarDot key={i} s={s} />)}
     </div>
   );
-}
+});
 
-export function SectionStars({ id }: { id: string }) {
+export const SectionStars = memo(function SectionStars({ id }: { id: string }) {
   const stars = sectionStarSets[id] ?? [];
   return (
     <div className="section-stars-layer" aria-hidden>
       {stars.map((s, i) => <StarDot key={i} s={s} />)}
     </div>
   );
-}
+});

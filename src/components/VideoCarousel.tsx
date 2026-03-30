@@ -106,7 +106,7 @@ export default function VideoCarousel() {
                       muted
                       loop
                       playsInline
-                      preload="metadata"
+                      preload="none"
                       className="w-full h-full object-cover"
                     />
                     <div className="video-overlay" style={{ opacity: 1, background: "linear-gradient(to top, rgba(7,11,26,0.7) 0%, rgba(7,11,26,0.1) 60%, transparent 100%)" }}>
