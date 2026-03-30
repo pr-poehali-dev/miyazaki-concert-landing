@@ -29,11 +29,6 @@ export default function VideoCarousel() {
 
   const openVideo = (idx: number) => {
     setActiveIdx(idx);
-    setTimeout(() => {
-      if (modalVideoRef.current) {
-        modalVideoRef.current.play().catch(() => {});
-      }
-    }, 50);
   };
 
   const closeVideo = () => {
@@ -60,6 +55,12 @@ export default function VideoCarousel() {
     setIsDragging(false);
     setDragDelta(0);
   };
+
+  useEffect(() => {
+    if (activeIdx !== null && modalVideoRef.current) {
+      modalVideoRef.current.play().catch(() => {});
+    }
+  }, [activeIdx]);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") closeVideo(); };
