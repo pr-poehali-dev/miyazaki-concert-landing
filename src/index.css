@@ -73,7 +73,14 @@
   background-repeat: no-repeat;
   opacity: 0.18;
   filter: saturate(0.6);
-  will-change: transform;
+}
+
+@media (max-width: 767px) {
+  .global-bg-image {
+    position: absolute;
+    background-attachment: scroll;
+    will-change: auto;
+  }
 }
 
 .global-bg-overlay {
@@ -88,6 +95,12 @@
     rgba(7, 11, 26, 0.5) 100%
   );
   pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .global-bg-overlay {
+    position: absolute;
+  }
 }
 
 /* ── Section local stars & nebula ── */
