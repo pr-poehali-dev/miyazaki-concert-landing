@@ -356,20 +356,14 @@ export function TicketsSection() {
           </h2>
         </div>
 
-        {/* ── Виджет билетного оператора ── */}
-        {/* Вставьте сюда код виджета (например, от Ticketscloud, Radario, Timepad и др.) */}
-        <div className="ticket-widget-slot rounded-2xl mb-12 flex flex-col items-center justify-center gap-4" style={{ minHeight: 220 }}>
-          <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ background: "rgba(232,201,122,0.1)", border: "1px solid rgba(232,201,122,0.25)" }}>
-            <Icon name="Ticket" size={24} style={{ color: "var(--star-gold)" }} />
-          </div>
-          <div className="text-center">
-            <p className="text-base font-light mb-1" style={{ color: "var(--star-silver)", fontFamily: "'Cormorant Garamond', serif", fontSize: "1.25rem" }}>
-              Здесь появится виджет продажи билетов
-            </p>
-            <p className="text-xs" style={{ color: "rgba(200,216,240,0.35)" }}>
-              Вставьте код виджета билетного оператора вместо этого блока
-            </p>
-          </div>
+        {/* ── Виджет cbiletom ── */}
+        <div className="mb-12" id="cb-widget-wrapper">
+          <script
+            id="cb-js"
+            dangerouslySetInnerHTML={{
+              __html: `(function(d){if (typeof d.CB == 'object') return;var s = d.createElement('script');s.type = 'text/javascript'; s.id = 'cb-controller';s.async = 1;s.src = 'https://cbiletom.ru/widget/1/assets/controller.js?itok=' + Math.round(1* new Date() / 3600000);s.onload = function() {new CB(d, {id:13292, view:2});};d.querySelector('head').append(s);})(document);`
+            }}
+          />
         </div>
 
         <p className="text-center text-xs mt-4" style={{ color: "rgba(200, 216, 240, 0.3)" }}>Возврат билетов до 15 апреля 2025 • 12+</p>
