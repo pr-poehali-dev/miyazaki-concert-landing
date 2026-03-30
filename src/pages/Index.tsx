@@ -1,15 +1,13 @@
 import { lazy, Suspense } from "react";
 import Icon from "@/components/ui/icon";
 import { StarsBackground } from "@/components/stars";
-import { AboutSection } from "@/components/sections";
+import { AboutSection, TicketsSection, Footer } from "@/components/sections";
 import { useInView } from "@/hooks/useInView";
 
 const AtmosphereSection = lazy(() => import("@/components/sections").then(m => ({ default: m.AtmosphereSection })));
 const ProgramSection = lazy(() => import("@/components/sections").then(m => ({ default: m.ProgramSection })));
 const PerformersSection = lazy(() => import("@/components/sections").then(m => ({ default: m.PerformersSection })));
 const VideoCarousel = lazy(() => import("@/components/VideoCarousel"));
-const TicketsSection = lazy(() => import("@/components/sections").then(m => ({ default: m.TicketsSection })));
-const Footer = lazy(() => import("@/components/sections").then(m => ({ default: m.Footer })));
 
 
 const heroImage = "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/files/ce1bc687-6056-4997-9310-c32fe42d72ec.jpg";
@@ -28,10 +26,8 @@ function BelowFold() {
           </Suspense>
         )}
       </div>
-      <Suspense fallback={null}>
-        <TicketsSection />
-        <Footer />
-      </Suspense>
+      <TicketsSection />
+      <Footer />
     </>
   );
 }
