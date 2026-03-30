@@ -17,6 +17,7 @@ export default function VideoCarousel() {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState(0);
   const [dragDelta, setDragDelta] = useState(0);
+  const wasDragged = useRef(false);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const modalVideoRef = useRef<HTMLVideoElement | null>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -43,11 +44,14 @@ export default function VideoCarousel() {
     setIsDragging(true);
     setDragStart(e.clientX);
     setDragDelta(0);
+    wasDragged.current = false;
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
   };
   const onPointerMove = (e: React.PointerEvent) => {
     if (!isDragging) return;
-    setDragDelta(e.clientX - dragStart);
+    const delta = e.clientX - dragStart;
+    setDragDelta(delta);
+    if (Math.abs(delta) > 10) wasDragged.current = true;
   };
   const onPointerUp = () => {
     if (dragDelta < -60) next();
@@ -129,7 +133,7 @@ export default function VideoCarousel() {
                   key={video.id}
                   className="video-slot flex-shrink-0"
                   style={{ width: `calc(${100 / VISIBLE}% - ${(16 * (VISIBLE - 1)) / VISIBLE}px)` }}
-                  onClick={() => !isDragging && Math.abs(dragDelta) < 10 && openVideo(idx)}
+                  onClick={() => { if (!wasDragged.current) openVideo(idx); }}
                 >
                   <div className="video-poster">
                     {video.src ? (
