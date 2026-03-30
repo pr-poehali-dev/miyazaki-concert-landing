@@ -495,25 +495,28 @@
   box-shadow: 0 20px 60px rgba(123, 94, 167, 0.2);
 }
 
+.stagger-1,
+.stagger-2,
+.stagger-3,
+.stagger-4,
+.stagger-5 {
+  animation: float-up 0.9s ease-out forwards;
+  opacity: 0;
+}
 .stagger-1 {
   animation-delay: 0.1s;
-  opacity: 0;
 }
 .stagger-2 {
   animation-delay: 0.3s;
-  opacity: 0;
 }
 .stagger-3 {
   animation-delay: 0.5s;
-  opacity: 0;
 }
 .stagger-4 {
   animation-delay: 0.7s;
-  opacity: 0;
 }
 .stagger-5 {
   animation-delay: 0.9s;
-  opacity: 0;
 }
 
 .nav-link {

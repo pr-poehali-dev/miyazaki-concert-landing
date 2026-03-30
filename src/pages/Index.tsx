@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef } from "react";
+import { lazy, Suspense } from "react";
 import Icon from "@/components/ui/icon";
 import { StarsBackground } from "@/components/stars";
 import { AboutSection } from "@/components/sections";
@@ -11,41 +11,34 @@ const VideoCarousel = lazy(() => import("@/components/VideoCarousel"));
 const TicketsSection = lazy(() => import("@/components/sections").then(m => ({ default: m.TicketsSection })));
 const Footer = lazy(() => import("@/components/sections").then(m => ({ default: m.Footer })));
 
+
 const heroImage = "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/files/ce1bc687-6056-4997-9310-c32fe42d72ec.jpg";
 
 function BelowFold() {
   const { ref, inView } = useInView("300px");
   return (
-    <div ref={ref}>
-      {inView && (
-        <Suspense fallback={null}>
-          <AtmosphereSection />
-          <ProgramSection />
-          <PerformersSection />
-          <VideoCarousel />
-          <TicketsSection />
-          <Footer />
-        </Suspense>
-      )}
-    </div>
+    <>
+      <div ref={ref}>
+        {inView && (
+          <Suspense fallback={null}>
+            <AtmosphereSection />
+            <ProgramSection />
+            <PerformersSection />
+            <VideoCarousel />
+          </Suspense>
+        )}
+      </div>
+      <Suspense fallback={null}>
+        <TicketsSection />
+        <Footer />
+      </Suspense>
+    </>
   );
 }
 
 export default function Index() {
-  const heroRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = heroRef.current;
-    if (!el) return;
-    const items = el.querySelectorAll<HTMLElement>(".stagger-1, .stagger-2, .stagger-3, .stagger-4, .stagger-5");
-    items.forEach((item) => {
-      item.classList.add("animate-float-up");
-    });
-  }, []);
-
   return (
     <div className="relative min-h-screen" style={{ background: "var(--night-deep)" }}>
-      {/* Global parallax hero image background */}
       <div className="global-bg-image" style={{ backgroundImage: `url(${heroImage})` }} />
       <div className="global-bg-overlay" />
 
@@ -67,7 +60,7 @@ export default function Index() {
       </nav>
 
       {/* HERO */}
-      <section ref={heroRef} className="relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-6 -mt-20">
+      <section className="relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-6 -mt-20">
         <div className="max-w-4xl mx-auto">
           <p
             className="stagger-1 text-base md:text-lg tracking-[0.25em] uppercase mb-6 font-medium"
