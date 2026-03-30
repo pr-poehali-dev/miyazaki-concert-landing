@@ -29,6 +29,11 @@ export default function VideoCarousel() {
 
   const openVideo = (idx: number) => {
     setActiveIdx(idx);
+    setTimeout(() => {
+      if (modalVideoRef.current) {
+        modalVideoRef.current.play().catch(() => {});
+      }
+    }, 50);
   };
 
   const closeVideo = () => {
