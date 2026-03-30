@@ -3,12 +3,12 @@ import Icon from "@/components/ui/icon";
 import { SectionStars } from "@/components/stars";
 
 const videos = [
-  { id: 1, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/5d04cb0b-d556-492e-9bad-1aa0df14e347.mov", title: "За кулисами", caption: "Подготовка к концерту" },
-  { id: 2, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/003db5c2-2d34-4984-93f0-2cd59f114ee1.mov", title: "Репетиция", caption: "Анна за виолончелью" },
-  { id: 3, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/3f4a0193-6660-470e-a863-21dfa8ddf00f.mov", title: "Звёздный купол", caption: "Планетарий изнутри" },
-  { id: 4, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/00832e22-7799-4ad1-856b-b06607c1c60e.mov", title: "Михаил", caption: "Фортепианный мотив" },
-  { id: 5, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/82e1eebc-64c5-4e14-8de3-1a9b9b9256a4.mov", title: "Анонс", caption: "19 апреля · Москва" },
-  { id: 6, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/78f833e8-f41f-42de-8f23-8ea6f13fe79a.mov", title: "Финал", caption: "Музыка под звёздным небом" },
+  { id: 1, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/b38c6f89-5c1e-4564-b031-d27c3390810b.mp4", title: "За кулисами", caption: "Подготовка к концерту" },
+  { id: 2, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/2f6559b9-ab9d-4b5e-8bcf-463ba64a25ff.mp4", title: "Репетиция", caption: "Анна за виолончелью" },
+  { id: 3, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/78bc8bbe-c505-4750-8deb-325e93983984.mp4", title: "Звёздный купол", caption: "Планетарий изнутри" },
+  { id: 4, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/e2f1bd41-651d-4dd6-bc7f-8c7bb2c8f45f.mp4", title: "Михаил", caption: "Фортепианный мотив" },
+  { id: 5, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/f20357a1-2ad2-4255-b036-c83a0afed351.mp4", title: "Анонс", caption: "19 апреля · Москва" },
+  { id: 6, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/01eed1dd-517a-48e0-8c6c-4f0421ea94c3.mp4", title: "Финал", caption: "Музыка под звёздным небом" },
 ];
 
 export default function VideoCarousel() {
