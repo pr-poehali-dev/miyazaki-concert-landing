@@ -2,13 +2,69 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import Icon from "@/components/ui/icon";
 import { SectionStars } from "@/components/stars";
 
+function VideoThumb({ src, onClick }: { src: string; onClick: () => void }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [poster, setPoster] = useState<string>("");
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.src = src;
+    video.muted = true;
+    video.playsInline = true;
+    video.preload = "metadata";
+    const onLoaded = () => {
+      video.currentTime = 0.5;
+    };
+    const onSeeked = () => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      canvas.width = video.videoWidth || 360;
+      canvas.height = video.videoHeight || 640;
+      const ctx = canvas.getContext("2d");
+      ctx?.drawImage(video, 0, 0, canvas.width, canvas.height);
+      setPoster(canvas.toDataURL("image/jpeg", 0.8));
+    };
+    video.addEventListener("loadedmetadata", onLoaded);
+    video.addEventListener("seeked", onSeeked);
+    video.load();
+    return () => {
+      video.removeEventListener("loadedmetadata", onLoaded);
+      video.removeEventListener("seeked", onSeeked);
+    };
+  }, [src]);
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="video-slot flex-shrink-0"
+      style={{ background: "none", border: "none", padding: 0, cursor: "pointer", position: "relative", zIndex: 25 }}
+    >
+      <canvas ref={canvasRef} style={{ display: "none" }} />
+      <video ref={videoRef} style={{ display: "none" }} />
+      <div className="video-poster">
+        {poster ? (
+          <img src={poster} alt="" className="w-full h-full object-cover" style={{ borderRadius: "inherit" }} />
+        ) : (
+          <div className="w-full h-full" style={{ background: "rgba(7,11,26,0.8)" }} />
+        )}
+        <div className="video-overlay" style={{ opacity: 1, background: "linear-gradient(to top, rgba(7,11,26,0.7) 0%, rgba(7,11,26,0.1) 60%, transparent 100%)" }}>
+          <div className="play-btn">
+            <Icon name="Play" size={22} style={{ color: "var(--night-deep)", marginLeft: "3px" }} />
+          </div>
+        </div>
+      </div>
+    </button>
+  );
+}
+
 const videos = [
-  { id: 1, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/b38c6f89-5c1e-4564-b031-d27c3390810b.mp4", title: "За кулисами", caption: "Подготовка к концерту" },
-  { id: 2, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/2f6559b9-ab9d-4b5e-8bcf-463ba64a25ff.mp4", title: "Репетиция", caption: "Анна за виолончелью" },
-  { id: 3, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/78bc8bbe-c505-4750-8deb-325e93983984.mp4", title: "Звёздный купол", caption: "Планетарий изнутри" },
-  { id: 4, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/e2f1bd41-651d-4dd6-bc7f-8c7bb2c8f45f.mp4", title: "Михаил", caption: "Фортепианный мотив" },
-  { id: 5, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/f20357a1-2ad2-4255-b036-c83a0afed351.mp4", title: "Анонс", caption: "19 апреля · Москва" },
-  { id: 6, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/01eed1dd-517a-48e0-8c6c-4f0421ea94c3.mp4", title: "Финал", caption: "Музыка под звёздным небом" },
+  { id: 1, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/6de5cb58-ed24-4d47-81d4-2cc60b232ea1.mp4", title: "За кулисами", caption: "Подготовка к концерту" },
+  { id: 2, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/1e8d4344-2d6a-45e6-8f31-c0b210f69e86.mp4", title: "Репетиция", caption: "Анна за виолончелью" },
+  { id: 3, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/ad0407a2-01ed-4402-b21a-45fa4cdba218.mp4", title: "Звёздный купол", caption: "Планетарий изнутри" },
+  { id: 4, src: "https://cdn.poehali.dev/projects/bc5b0359-d47d-4d80-b141-57f2c7c367aa/bucket/f9c6273b-9d7e-4e52-808e-c769ca2c5199.mp4", title: "Михаил", caption: "Фортепианный мотив" },
 ];
 
 const VISIBLE = 3;
@@ -87,37 +143,15 @@ export default function VideoCarousel() {
               }}
             >
               {videos.map((video, idx) => (
-                <button
+                <div
                   key={video.id}
-                  type="button"
-                  onClick={() => openVideo(idx)}
-                  className="video-slot flex-shrink-0"
                   style={{
                     width: `calc(${100 / VISIBLE}% - ${(16 * (VISIBLE - 1)) / VISIBLE}px)`,
-                    background: "none",
-                    border: "none",
-                    padding: 0,
-                    cursor: "pointer",
-                    position: "relative",
-                    zIndex: 25,
+                    flexShrink: 0,
                   }}
                 >
-                  <div className="video-poster">
-                    <video
-                      src={video.src}
-                      muted
-                      loop
-                      playsInline
-                      preload="none"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="video-overlay" style={{ opacity: 1, background: "linear-gradient(to top, rgba(7,11,26,0.7) 0%, rgba(7,11,26,0.1) 60%, transparent 100%)" }}>
-                      <div className="play-btn">
-                        <Icon name="Play" size={22} style={{ color: "var(--night-deep)", marginLeft: "3px" }} />
-                      </div>
-                    </div>
-                  </div>
-                </button>
+                  <VideoThumb src={video.src} onClick={() => openVideo(idx)} />
+                </div>
               ))}
             </div>
           </div>
