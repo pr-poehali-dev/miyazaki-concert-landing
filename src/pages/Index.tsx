@@ -62,7 +62,7 @@ export default function Index() {
             className="stagger-1 text-base md:text-lg tracking-[0.25em] uppercase mb-6 font-medium"
             style={{ color: "var(--star-silver)", fontFamily: "'Golos Text', sans-serif", textShadow: "0 0 20px rgba(200,216,240,0.3)" }}
           >
-            19 апреля 2025 • Начало в 19:00
+            Нижний Новгород • 19 апреля 2025 • Начало в 19:00
           </p>
 
           <h1
