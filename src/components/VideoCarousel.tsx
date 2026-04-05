@@ -4,36 +4,14 @@ import { SectionStars } from "@/components/stars";
 
 function VideoThumb({ src, onClick }: { src: string; onClick: () => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [poster, setPoster] = useState<string>("");
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-    video.src = src;
-    video.muted = true;
-    video.playsInline = true;
-    video.preload = "metadata";
-    const onLoaded = () => {
-      video.currentTime = 0.5;
-    };
-    const onSeeked = () => {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
-      canvas.width = video.videoWidth || 360;
-      canvas.height = video.videoHeight || 640;
-      const ctx = canvas.getContext("2d");
-      ctx?.drawImage(video, 0, 0, canvas.width, canvas.height);
-      setPoster(canvas.toDataURL("image/jpeg", 0.8));
-    };
+    const onLoaded = () => { video.currentTime = 0.5; };
     video.addEventListener("loadedmetadata", onLoaded);
-    video.addEventListener("seeked", onSeeked);
-    video.load();
-    return () => {
-      video.removeEventListener("loadedmetadata", onLoaded);
-      video.removeEventListener("seeked", onSeeked);
-    };
-  }, [src]);
+    return () => video.removeEventListener("loadedmetadata", onLoaded);
+  }, []);
 
   return (
     <button
@@ -42,14 +20,15 @@ function VideoThumb({ src, onClick }: { src: string; onClick: () => void }) {
       className="video-slot flex-shrink-0"
       style={{ background: "none", border: "none", padding: 0, cursor: "pointer", position: "relative", zIndex: 25 }}
     >
-      <canvas ref={canvasRef} style={{ display: "none" }} />
-      <video ref={videoRef} style={{ display: "none" }} />
       <div className="video-poster">
-        {poster ? (
-          <img src={poster} alt="" className="w-full h-full object-cover" style={{ borderRadius: "inherit" }} />
-        ) : (
-          <div className="w-full h-full" style={{ background: "rgba(7,11,26,0.8)" }} />
-        )}
+        <video
+          ref={videoRef}
+          src={src}
+          muted
+          playsInline
+          preload="metadata"
+          className="w-full h-full object-cover"
+        />
         <div className="video-overlay" style={{ opacity: 1, background: "linear-gradient(to top, rgba(7,11,26,0.7) 0%, rgba(7,11,26,0.1) 60%, transparent 100%)" }}>
           <div className="play-btn">
             <Icon name="Play" size={22} style={{ color: "var(--night-deep)", marginLeft: "3px" }} />
