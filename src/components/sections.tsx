@@ -80,7 +80,7 @@ export function AboutSection() {
             <div className="flex flex-col gap-3">
               {[
                 { icon: "MapPin", label: "Планетарий 1", sub: "просп. Гагарина, 35Н, Парк Швейцария" },
-                { icon: "Clock", label: "19 апреля 2025 · 19:00", sub: "Начало концерта" },
+                { icon: "Clock", label: "19 апреля 2026 · 19:00", sub: "Начало концерта" },
                 { icon: "Music", label: "~75 минут", sub: "Без антракта" },
               ].map(({ icon, label, sub }) => (
                 <div key={label} className="flex items-center gap-4 rounded-xl px-4 py-3" style={{ background: "rgba(232,201,122,0.06)", border: "1px solid rgba(232,201,122,0.15)" }}>
@@ -402,7 +402,7 @@ export function Footer() {
       <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <span style={{ color: "var(--star-gold)" }}>✦</span>
-          <span className="text-sm" style={{ color: "rgba(200, 216, 240, 0.4)", fontFamily: "'Golos Text', sans-serif" }}>Миядзаки в Планетарии 1 — Нижний Новгород, 19 апреля 2025</span>
+          <span className="text-sm" style={{ color: "rgba(200, 216, 240, 0.4)", fontFamily: "'Golos Text', sans-serif" }}>Миядзаки в Планетарии 1 — Нижний Новгород, 19 апреля 2026</span>
         </div>
         <div className="flex gap-6">
           <a href="#" className="text-xs nav-link">Политика конфиденциальности</a>
