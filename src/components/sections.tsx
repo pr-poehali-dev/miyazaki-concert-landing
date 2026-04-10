@@ -373,9 +373,7 @@ export function TicketsSection() {
         <div className="md:hidden mb-12 flex flex-col items-center gap-6 text-center">
           <div className="rounded-2xl px-8 py-10 w-full" style={{ border: "1px solid rgba(232,201,122,0.15)", background: "rgba(13,21,53,0.6)" }}>
             <p className="text-4xl mb-4">🎟</p>
-            <p className="text-lg font-light mb-2" style={{ color: "var(--star-silver)", fontFamily: "'Cormorant Garamond', serif" }}>
-              19 апреля 2025 · 19:00
-            </p>
+            <p className="text-lg font-light mb-2" style={{ color: "var(--star-silver)", fontFamily: "'Cormorant Garamond', serif" }}>19 апреля 2026 · 19:00</p>
             <p className="text-sm mb-8" style={{ color: "rgba(200,216,240,0.55)" }}>
               Планетарий 1, Нижний Новгород
             </p>
